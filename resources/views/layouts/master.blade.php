@@ -25,8 +25,9 @@
             }
     </style>
     <link href="{{asset('css/dashboard.css')}}" rel="stylesheet">
+    
     <title>@yield('title')</title>
-
+    <link rel="icon" href="{{asset('image/acdseal.png')}}" type="image/x-icon"> 
 </head>
 <body>
     <div class="container-fluid">

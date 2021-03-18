@@ -7,7 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Evaluee extends Model
 {
     protected $table= 'evaluees';
-   // public $timestamps = false;
+   
+
+    public function evaluations(){
+        return $this->hasMany('App\Evaluation');
+    }
 
     public function getDateFormat()
     {

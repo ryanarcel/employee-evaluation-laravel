@@ -25,11 +25,18 @@ class ToolController extends Controller
     }
 
     public function storeItem(Request $request){
-        $item = new ToolItem;
-        $item->statement = $request->statement;
-        $item->tool_id = $request->toolId;
-        $item->save();
-      //  return redirect()->route("showTool",$request->toolId);
+        // $item = new ToolItem;
+        // $item->statement = $request->statement;
+        // $item->tool_id = $request->toolId;
+        // $item->save();
+
+        $criteria = [];
+
+        for($i=0; $i<count($request->points);  $i++){
+            $criteria[$request->points] = $request->criterion;
+        }
+        return $criteria;
+     
     }
 
     public function updateItem(Request $request, $id){

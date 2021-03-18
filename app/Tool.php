@@ -12,6 +12,8 @@ class Tool extends Model
         return 'Y-m-d H:i:s.u';
     }
 
+ //  public function $evaluation
+
     public function items(){
         return $this->hasMany("App\ToolItem");
     }

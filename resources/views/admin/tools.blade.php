@@ -16,7 +16,7 @@
         <h1 class="h5">Manage Evaluation Tools</h1>
     </div>
     <div class="row">
-        <div class="col-md-4 ">
+        <div class="col-md-6 offset-md-3 col-lg-6 offset-lg-3">
         <ul class="list-group ">
         @foreach ($tools as $tool)
             <li class="list-group-item">
