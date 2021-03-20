@@ -50,9 +50,9 @@
 
         <div class="col-md-6">
             <div class="card shadow pt-4 pb-4 pr-3">
-            <ul id="item-list">
+            <ul id="item-list" class="list-group">
                 @foreach($items as $item)
-                <li class="list-li">            
+                <li class="list-li list-group-item ml-3">            
                 <a href="#" class='item-link' class="item-link">{{$item->statement}}</a>
                 <input type="hidden" value="{{$item->id}}">
                 </li>
@@ -91,11 +91,11 @@
                 <label for="statement"><b>Create Item</b></label>
                 <textarea name="statement" id="statement" style="width:400px; height:100px; resize:none; padding-left:0px" class="form-control mb-2">
                 </textarea>
-                <a href="#" class="add-criteria" data-toggle="tooltip" data-placement="top" title="Setup rubrics" >
+                <a href="#" class="add-criteria" data-toggle="tooltip" data-placement="top" title="Setup rubric" >
                     <span data-feather="plus-circle"></span>
                 </a>
                 
-                <ul id="view-criteria" class="card card-body"></ul>
+                <ul id="view-criteria" class="card card-body list-group pl-3"></ul>
               
                 <input type="hidden" name="toolId" value="{{$id}}">
                 <input type="submit" class="btn btn-primary mt-3" id="add" value="Create Item">
@@ -119,7 +119,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="col-md-10 col-lg-10">
+                <div class="col-md-10 col-lg-10 offset-md-2 offset-lg-2">
                     <div class="input-group col-input-group mb-3">
                         <div class="input-group-append">
                             <input type="number" id="noOfColumns" class="form-control" style="width:350px" placeholder="Enter maximum number of criteria points">
@@ -133,7 +133,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-success text-white" id="btn-complete">Complete</button>
+                <button type="button" class="btn btn-success text-white" id="btn-complete">Set</button>
                 <button type="button" class="btn btn-secondary criteriaModal-close" data-dismiss="modal">Close</button>
             </div>
          
@@ -222,7 +222,7 @@
                     "<td class='center'><b>"+i+"</b></td>"
                 );
                 criterion.append(
-                    "<td class='ml-2 mr-2'><textarea type='text' class='form-control' id='criteria-statement"+i+"' placeholder='Enter criterion for "+i+" point(s)'></textarea></td>"
+                    "<td class='ml-2 mr-2'><textarea type='text' class='form-control' id='criteria-statement"+i+"' placeholder='Enter criterion'></textarea></td>"
                 );
              }
 
@@ -237,7 +237,7 @@
                         objects[i] = criterStatement;
 
                         viewCriteria.append(
-                            "<li class='center'><input type='text' name='points[]' style='width:10px' value='"+i+"' class='mr-4 for-review'><input type='text' class='for-review' name='criterion[]' value='"+criterStatement+"'></li>"
+                            "<li class='center list-group-item'>"+i+" - <input type='text' class='for-review' name='criterion[]' value='"+criterStatement+"'></li>"
                         );
                     }
                     console.log(objects)      

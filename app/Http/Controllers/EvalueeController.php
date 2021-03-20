@@ -36,25 +36,10 @@ class EvalueeController extends Controller
         $evaluee->position = "Teacher";
         $evaluee->rank = "Faculty";
         $evaluee->teaching_dept = "College";
-
-        /*$duplicateEval = Evaluee::where([
-                    ['fname','=', $request->fname],
-                    ['lname','=', $request->lname],
-                    ['teaching_dept', '=', 'College']
-            ])->get();
-
-        //if evaluee does not exists yet
-        if($duplicateEval->count()===0){*/
            
-            $evaluee->save();            
+        $evaluee->save();            
             
-            return redirect()->route('evaluees.index')->with("message","Record Added");
-           
-        /*}
-
-        else{
-            return redirect()->route('evaluees.index')->withErrors("A college teacher with the same name already exists in the database.");
-        }*/
+        return redirect()->route('evaluees.index')->with("message","Record Added");
     }
 
     public function show($id)
@@ -107,15 +92,15 @@ class EvalueeController extends Controller
         $request->session()->forget('toSummarize');
         $request->session()->put('toSummarize', $request->evaluations);
 
-            $maxItemId = ToolItem::whereRaw('id = (select max(`id`) from tool_items)')->get();
-            $maxEvalId = Evaluation::whereRaw('id = (select max(`id`) from evaluations)')->get();
-            $evaluations = Evaluation::find($request->evaluations);
-            $evaluee = Evaluee::find($id);
-            $items = ToolItem::where("tool_id","=",1)->get();
-            return view("views-evaluation.summaryEvaluation")->
-            with(["evaluations"=> $evaluations,"items"=>$items,"maxItemId"=>$maxItemId, "maxEvalId"=>$maxEvalId, "evaluee"=>$evaluee]);
+        $maxItemId = ToolItem::whereRaw('id = (select max(`id`) from tool_items)')->get();
+        $maxEvalId = Evaluation::whereRaw('id = (select max(`id`) from evaluations)')->get();
+        $evaluations = Evaluation::find($request->evaluations);
+        $evaluee = Evaluee::find($id);
+        $items = ToolItem::where("tool_id","=",1)->get();
+        return view("views-evaluation.summaryEvaluation")->
+        with(["evaluations"=> $evaluations,"items"=>$items,"maxItemId"=>$maxItemId, "maxEvalId"=>$maxEvalId, "evaluee"=>$evaluee]);
         
-       return $evaluations;
+        return $evaluations;
         //return $request->session()->get("toSummarize");
     }
 
@@ -130,10 +115,7 @@ class EvalueeController extends Controller
         $items = ToolItem::where("tool_id","=",1)->get();
         return view("views-evaluation.printEvaluationSummary")->
         with(["evaluations"=> $evaluations,"items"=>$items,"maxItemId"=>$maxItemId, "maxEvalId"=>$maxEvalId, "evaluee"=>$evaluee]);
-         
-        //return dd($evaluations);
-        //return $evalArray;
-        //return $evaluations;
+
     }
 
 }

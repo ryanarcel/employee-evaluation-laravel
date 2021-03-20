@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Tool;
 use App\ToolItem;
+use App\Criterion;
 
 class ToolController extends Controller
 {
@@ -25,17 +26,31 @@ class ToolController extends Controller
     }
 
     public function storeItem(Request $request){
-        // $item = new ToolItem;
-        // $item->statement = $request->statement;
-        // $item->tool_id = $request->toolId;
-        // $item->save();
+        $item = new ToolItem;
+        $item->statement = $request->statement;
+        $item->tool_id = $request->toolId;
+        $item->save();
 
-        $criteria = [];
+        $latestItemId = ToolItem::latest()->first();
 
-        for($i=0; $i<count($request->points);  $i++){
-            $criteria[$request->points] = $request->criterion;
+        if(isset($request->criterion)){
+            $criterion = $request->criterion;
+            $arraySize = count($request->criterion);
+
+            for($i=0; $i<$arraySize; $i++){
+                Criterion::create([
+                    "tool_id" => $request->toolId,
+                    "item_id" => $latestItemId,
+                    "criterion" => $criterion[$i],
+                    "points" => ($i+1)
+                ]);
+                // echo ($i+1)." = ". $criterion[$i];
+                // echo "<br>";
+            }
         }
-        return $criteria;
+
+       // return count($request->criterion);
+        return redirect()->back();
      
     }
 
