@@ -62,16 +62,18 @@ Route::group(['middleware' => ['customAuthAdmin']], function () {
 
     //=================Resource Controllers===============//
 
-    
     Route::resource('admins', 'AdminController');
     Route::resource('supervisors', 'SupervisorController');
     Route::resource('evaluees', 'EvalueeController');
     Route::resource('BEDevaluees', 'BedController');
+    Route::resource('NTPevaluees', 'NTPController');
+
     Route::resource('teacherTools', 'ToolItemController');
     Route::resource('evaluations', 'EvaluationController');
     Route::post('/fetchEvaluations','EvaluationController@fetch')->name('fetchTeacher');
     Route::resource('adminevaluations', 'AdminEvaluationController');
     Route::resource('supervevaluations', 'SupervEvaluationController');
+    Route::resource('ntpevaluations', 'NTPEvaluationController');
 
     Route::get('/evaluee/new', function(){
         $passwordData = DB::table("defaultpass")->first();
@@ -100,8 +102,6 @@ Route::group(['middleware' => ['customAuthTeacher']], function () {
     })->name('teacher-landing');
 
 });
-
-
 
 //================students' page===============//
 Route::get('/student/access-key/', function(){

@@ -15,11 +15,16 @@ class ToolItem extends Model
     public function totalscores(){
         return $this->hasMany("App\Total");
     }
+
+    public function criteria(){
+        return $this->hasMany("App\Criterion");
+    }
     
     public function getDateFormat()
     {
         return 'Y-m-d H:i:s.u';
     }
+
 
 
 }

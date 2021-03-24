@@ -5,7 +5,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h5">Setup Supervisor Evaluation</h1>
+        <h1 class="h5">Setup NTP Evaluation</h1>
     </div>
     <div class="col-md-12 pt-3 card bg-light shadow pl-5 pr-5">
       <div class=" mt-4 mb-4">
@@ -18,7 +18,7 @@
             <div class="form-group form-inline">
                 <label class="font-weight-bold float-left">Supervisor:</label>
                 <input type="text" required="true" class="form-control ml-4" name="teacher" disabled placeholder="Juan Dela Cruz" id="teacher-input" style="width:25%">
-                <a class="btn btn-success ml-2" data-toggle="modal" data-target="#tableModal" href="#"><i data-feather="search"></i> Search</a>  
+                <a class="btn btn-warning ml-2" data-toggle="modal" data-target="#tableModal" href="#"><i data-feather="search"></i> Search</a>  
             </div>
 
           <div class="form-group form-inline">
@@ -34,7 +34,7 @@
           </div>
           <div class="form-group pt-3">
               <a href="{{route('admindashboard')}}" class="btn btn-secondary mr-3">Cancel</a>
-              <button class="btn btn-success">Create</button>
+              <button class="btn btn-warning">Create</button>
             </div>
       </form>
       </div>
@@ -56,9 +56,9 @@
             <thead>
                 <tr>
                     <th style="display:none">ID</th>
-                    <th class="bg-success text-light">Name</th>
-                    <th class="bg-success text-light">Office</th>
-                    <th class="bg-success text-light">Position</th>
+                    <th class="bg-warning">Name</th>
+                    <th class="bg-warning">Office</th>
+                    <th class="bg-warning">Position</th>
                 </tr>
             </thead>
             <tbody>

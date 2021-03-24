@@ -29,9 +29,13 @@ class ToolController extends Controller
         $item = new ToolItem;
         $item->statement = $request->statement;
         $item->tool_id = $request->toolId;
-        $item->save();
+      
+         $item->save();
 
         $latestItemId = ToolItem::latest()->first();
+
+        $latestItemId = $latestItemId->id;
+
 
         if(isset($request->criterion)){
             $criterion = $request->criterion;
@@ -44,13 +48,13 @@ class ToolController extends Controller
                     "criterion" => $criterion[$i],
                     "points" => ($i+1)
                 ]);
-                // echo ($i+1)." = ". $criterion[$i];
-                // echo "<br>";
+                //  echo ($i+1)." = ". $criterion[$i];
+                //  echo "<br>";
             }
         }
 
-       // return count($request->criterion);
-        return redirect()->back();
+      // return count($request->criterion);
+       return redirect()->back();
      
     }
 

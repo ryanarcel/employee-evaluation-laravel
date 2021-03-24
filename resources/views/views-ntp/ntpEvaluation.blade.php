@@ -15,8 +15,8 @@
         height:60px;
         bottom:40px; 
         right:40px;
-        background-color:rgb(27, 122, 24);
-        color:#FFF;
+        background-color:yellow;
+        color:#000;
         border-radius:50px;
         text-align:center;
         box-shadow: 2px 2px 3px #999;
@@ -46,7 +46,7 @@
 @section('content') 
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h5">Supervisor Evaluation</h1>
+        <h1 class="h5">NTP Evaluation</h1>
     </div>
 <div class="row">   
     <div class="col-md-8 offset-md-1" >
@@ -119,7 +119,7 @@
           </ul>
         </div>
 
-        <a href="{{route('supervevaluations.create')}}" class="float">
+        <a href="{{route('ntpevaluations.create')}}" class="float">
             <span data-feather="plus" class="my-float"></span>
         </a>
 

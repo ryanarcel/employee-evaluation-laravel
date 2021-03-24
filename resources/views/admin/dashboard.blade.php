@@ -4,7 +4,6 @@
 @stop
 @section('content')
 
-
    @if(Auth::check())
    <div class="mt-5">
         <center>
