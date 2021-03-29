@@ -23,7 +23,7 @@
                 <li class="list-group-item pl-5"><a href="{{route('supervisors.index')}}" class="text-dark">Supervisor</a></li>
                 <li class="list-group-item pl-5"><a href="{{route('BEDevaluees.index')}}" class="text-dark">BED Teacher</a></li>
                 <li class="list-group-item pl-5"><a href="{{route('evaluees.index')}}" class="text-dark">College Teacher</a></li>
-                <li class="list-group-item pl-5"><a href="#" class="text-dark">NTP</a></li>
+                <li class="list-group-item pl-5"><a href="{{route('NTPevaluees.index')}}" class="text-dark">NTP</a></li>
               </ul>
             </li>
 

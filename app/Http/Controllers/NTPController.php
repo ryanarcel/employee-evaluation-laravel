@@ -3,23 +3,25 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Evaluee;
+use App\Evaluation;
+use App\ToolItem;
 
 class NTPController extends Controller
 {
     public function index(Request $request)
     {
         
-        $evaluees = Evaluee::orderBy('id','desc')->where('rank','NTP')->where('teaching_dept','BED')->get();
+        $evaluees = Evaluee::orderBy('id','desc')->where('rank','NTP')->get();
        
-        return view("views-bed.evaluee")->with(["evaluees"=> $evaluees]);
+        return view("views-ntp.evaluee")->with(["evaluees"=> $evaluees]);
     }
 
  
     public function create()
     {
-        return view('views-bed.createEvaluee');
+        return view('views-ntp.createEvaluee');
     }
-
 
     public function store(Request $request)
     {
@@ -57,17 +59,17 @@ class NTPController extends Controller
         $evaluations = $evaluee->evaluations;
 
         if(count($evaluations)==0){
-            return view("views-bed.eachEvaluee", compact("evaluee"))->withErrors(["No evaluations found"]);
+            return view("views-ntp.eachEvaluee", compact("evaluee"))->withErrors(["No evaluations found"]);
         }
         else{
-            return view("views-bed.eachEvaluee")->with(["evaluee" => $evaluee, "evaluations" => $evaluations]);
+            return view("views-ntp.eachEvaluee")->with(["evaluee" => $evaluee, "evaluations" => $evaluations]);
         }
     }
 
     public function edit($id)
     {
         $evaluee = Evaluee::find($id);
-        return view("views-bed.editEvaluee")->with("evaluee", $evaluee);
+        return view("views-ntp.editEvaluee")->with("evaluee", $evaluee);
     }
 
     public function update(Request $request, $id)
