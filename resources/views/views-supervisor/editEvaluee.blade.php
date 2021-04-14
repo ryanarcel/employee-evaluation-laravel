@@ -29,16 +29,15 @@ Edit Evaluee
             </div>
             <div class="form-group">
                 <label >Office</label>
-                <input type="text" class="form-control" name="office" value="{{$evaluee->office}}" style="width:70%">
+                <input type="text" class="form-control" name="office" value="{{$evaluee->office}}" >
             </div>
             <div class="form-group">
                 <label >Position</label>
-                <input type="text" class="form-control" name="position" value="{{$evaluee->position}}" style="width:70%">
+                <input type="text" class="form-control" name="position" value="{{$evaluee->position}}" >
             </div>
             <div class="form-group">
-            <center>
-            <a href="{{route('supervisors.index')}}" class="btn btn-secondary mr-3">Cancel</a><button class="btn btn-info text-white">Update</button>
-            </center>
+            <button class="btn btn-info mt-3 " style='width:100%'>UPDATE</button>
+            <a href="{{route('supervisors.index')}}" class="btn btn-secondary mr-3" style='width:100%'>CANCEL</a>
             </div>
         </form>
         </div>

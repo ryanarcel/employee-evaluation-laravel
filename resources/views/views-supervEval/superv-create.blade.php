@@ -5,20 +5,20 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h5">Setup NTP Evaluation</h1>
+        <h1 class="h5">Setup Supervisor's Evaluation</h1>
     </div>
     <div class="col-md-12 pt-3 card bg-light shadow pl-5 pr-5">
       <div class=" mt-4 mb-4">
-      <form action="{{route('NTPevaluees.store')}}" method="post"  >
+      <form action="{{route('supervevaluations.store')}}" method="post"  >
           @method('post')
           @csrf
           <input type="hidden" name="evaluee_id" id="evaluee_id" value="">
-          <input type="hidden" name="tool_id" value="3">
+          <input type="hidden" name="tool_id" value="4">
           
             <div class="form-group form-inline">
-                <label class="font-weight-bold float-left">Personnel:</label>
+                <label class="font-weight-bold float-left">Administrator:</label>
                 <input type="text" required="true" class="form-control ml-4" name="teacher" disabled placeholder="Juan Dela Cruz" id="teacher-input" style="width:25%">
-                <a class="btn btn-warning ml-2" data-toggle="modal" data-target="#tableModal" href="#"><i data-feather="search"></i> Search</a>  
+                <a class="btn btn-info ml-2" data-toggle="modal" data-target="#tableModal" href="#"><i data-feather="search"></i> Search</a>  
             </div>
 
           <div class="form-group form-inline">
@@ -34,7 +34,7 @@
           </div>
           <div class="form-group pt-3">
               <a href="{{route('admindashboard')}}" class="btn btn-secondary mr-3">Cancel</a>
-              <button class="btn btn-warning">Create</button>
+              <button class="btn btn-info">Create</button>
             </div>
       </form>
       </div>
@@ -45,7 +45,7 @@
     <div class="modal-dialog col-md-12" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Search Supervisor</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Search Administrator</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -56,9 +56,9 @@
             <thead>
                 <tr>
                     <th style="display:none">ID</th>
-                    <th class="bg-warning">Name</th>
-                    <th class="bg-warning">Office</th>
-                    <th class="bg-warning">Position</th>
+                    <th class="bg-info text-dark">Name</th>
+                    <th class="bg-info text-dark">Office</th>
+                    <th class="bg-info text-dark">Position</th>
                 </tr>
             </thead>
             <tbody>

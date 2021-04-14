@@ -50,6 +50,11 @@
             <tbody>
             @foreach($eval->tool->items as $item)
 
+                @if(isset($item->criteria))
+                <tr>
+                    <td class="col-md-4 statement pl-2">&nbsp;&nbsp;&nbsp;{{$item->statement}}</td>
+                </tr>
+                @else
                 <tr>
                     <td class="col-md-4 statement pl-2">&nbsp;&nbsp;&nbsp;{{$item->statement}}</td>
                     <td><input type="radio" name="{{$item->id}}" class="score_{{$item->id}}" value="4"></td>
@@ -59,6 +64,8 @@
                     <td><a href="#" class="badge badge-danger"><i data-feather="minus" onClick="$('.score_{{$item->id}}').prop('checked', false)"></i></a></td>
                     {{-- <input type="hidden" name="item_{{$item->id}}" value="{{$item->id}}"> --}}
                 </tr>
+                @endif
+                
                 
             @endforeach
             </tbody>

@@ -11,7 +11,7 @@ class SupervEvaluationController extends Controller
     public function index()
     { 
         
-        $evaluations = Evaluation::where('tool_id','=', 3)->where('archived', 0)->orderBy('id', 'desc')->get();
+        $evaluations = Evaluation::where('tool_id','=', 4)->where('archived', 0)->orderBy('id', 'desc')->get();
 
         //return $evaluations;
         return view('views-supervEval.supervEvaluation', compact("evaluations"));

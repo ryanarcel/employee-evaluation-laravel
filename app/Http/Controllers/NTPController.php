@@ -28,12 +28,12 @@ class NTPController extends Controller
         $evaluee = new Evaluee;
         $evaluee->fname = $request->fname;
         $evaluee->lname = $request->lname;
-        $evaluee->office = "BED";
-        $evaluee->position = "Teacher";
-        $evaluee->rank = "Faculty";
-        $evaluee->teaching_dept = "BED";
+        $evaluee->office = $request->office;
+        $evaluee->position = $request->position;
+        $evaluee->rank = "NTP";
+        $evaluee->teaching_dept = "N/A";
 
-       /* $duplicateEval = Evaluee::where([
+      /*  $duplicateEval = Evaluee::where([
                     ['fname','=', $request->fname],
                     ['lname','=', $request->lname],
                     ['teaching_dept','=','BED']
@@ -41,15 +41,11 @@ class NTPController extends Controller
 
         //if evaluee does not exists yet
         if($duplicateEval->count()===0){*/
-           
             $evaluee->save();            
-            
-            return redirect()->route('BEDevaluees.index')->with("message","Record Added");
-           
-       /* }
-
+            return redirect()->route('NTPevaluees.index')->with("message","Record Added");
+        /*}
         else{
-            return redirect()->route('BEDevaluees.index')->withErrors("A BED teacher with the same name already exists in the database.");
+            return redirect()->route('NTPevaluees.index')->withErrors("A personnel with the same name already exists in the database.");
         }*/
     }
 
@@ -77,13 +73,13 @@ class NTPController extends Controller
         $evaluee = Evaluee::find($id);
         $evaluee->fname = $request->fname;
         $evaluee->lname = $request->lname;
-        $evaluee->office = "BED";
-        $evaluee->position = "Teacher";
-        $evaluee->rank = "Faculty";
-        $evaluee->teaching_dept = "BED";
+        $evaluee->office = $request->office;
+        $evaluee->position = $request->position;
+        $evaluee->rank = "NTP";
+        $evaluee->teaching_dept = "N/A";
 
         $evaluee->save();
-        return redirect()->route('BEDevaluees.index');
+        return redirect()->route('NTPevaluees.index');
     }
 
  
@@ -95,7 +91,7 @@ class NTPController extends Controller
        Evaluation::where('evaluee_id', $id)->delete();
        $evaluee->delete();
        
-       return redirect()->route('BEDevaluees.index');
+       return redirect()->route('NTPevaluees.index');
     }
 
     public function summarize(Request $request, $id){

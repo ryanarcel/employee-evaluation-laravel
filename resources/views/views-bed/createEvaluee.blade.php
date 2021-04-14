@@ -11,7 +11,7 @@ Add Evaluee
 @stop
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h5">Add College Teacher</h1>
+        <h1 class="h5">Add BED Teacher</h1>
         
     </div>
     <div class="col-md-12 pt-3 card bg-light shadow">
@@ -28,9 +28,9 @@ Add Evaluee
                 <input type="text" class="form-control" name="lname" placeholder="Dela Cruz" required>
             </div>
             <div class="form-group">
-            <center>
-            <a href="{{route('BEDevaluees.index')}}" class="btn btn-secondary mr-3">Cancel</a><button class="btn btn-info">Add</button>
-            </center>
+            <button class="btn btn-primary" style="width:100%">ADD</button>
+            <a href="{{route('BEDevaluees.index')}}" class="btn btn-secondary mr-3" style="width:100%">CANCEL</a>
+            
             </div>
         </form>
         </div>

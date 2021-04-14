@@ -9,7 +9,7 @@ class Criterion extends Model
     protected $table = "criteria";
     protected $fillable = ["tool_id", "item_id", "criterion", "points"];
 
-    public function toolItems(){
+    public function item(){
         return $this->belongsTo("App\ToolItem");
     }
   

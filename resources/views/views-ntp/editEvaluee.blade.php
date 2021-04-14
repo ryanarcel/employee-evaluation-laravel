@@ -16,7 +16,7 @@ Edit Evaluee
     </div>
     <div class="col-md-12 pt-3 card shadow">
         <div class="col-md-6 mt-4 mb-4 offset-md-3">
-        <form action="{{route('BEDevaluees.update', $evaluee->id)}}" method="post">
+        <form action="{{route('NTPevaluees.update', $evaluee->id)}}" method="post">
             @method('put')
             @csrf
             <div class="form-group">
@@ -28,9 +28,8 @@ Edit Evaluee
                 <input type="text" class="form-control" name="lname" value="{{$evaluee->lname}}">
             </div>
             <div class="form-group">
-            <center>
-            <a href="{{route('BEDevaluees.index')}}" class="btn btn-secondary mr-3">Cancel</a><button class="btn btn-success text-white">Update</button>
-            </center>
+            <button class="btn" style="width:100%; background-color:pink">UPDATE</button>
+            <a href="{{route('NTPevaluees.index')}}" class="btn btn-secondary mr-3" style="width:100%">CANCEL</a>
             </div>
         </form>
         </div>

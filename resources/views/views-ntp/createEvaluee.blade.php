@@ -16,7 +16,7 @@ Add Evaluee
     </div>
     <div class="col-md-12 pt-3 card bg-light shadow">
         <div class="col-md-6 mt-4 mb-4 offset-md-3">
-        <form action="{{route('BEDevaluees.store')}}" method="post">
+        <form action="{{route('NTPevaluees.store')}}" method="post">
             @method('post')
             @csrf
             <div class="form-group">
@@ -28,9 +28,17 @@ Add Evaluee
                 <input type="text" class="form-control" name="lname" placeholder="Dela Cruz" required>
             </div>
             <div class="form-group">
-            <center>
-            <a href="{{route('NTPevaluees.index')}}" class="btn btn-secondary mr-3">Cancel</a><button class="btn" style="background-color: pink">Add</button>
-            </center>
+                <label >Office</label>
+                <input type="text" class="form-control" name="office" placeholder="Juan" required>
+            </div>
+            <div class="form-group">
+                <label >Position</label>
+                <input type="text" class="form-control" name="position" placeholder="Dela Cruz" required>
+            </div>
+            <div class="form-group">
+            <button class="btn" style="width:100%; background-color:pink">ADD</button>
+            <a href="{{route('NTPevaluees.index')}}" class="btn btn-secondary mr-3" style="width:100%">CANCEL</a>
+            </div>
             </div>
         </form>
         </div>

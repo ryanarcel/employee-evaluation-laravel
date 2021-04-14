@@ -29,16 +29,15 @@ Add Evaluee
             </div>
             <div class="form-group">
                 <label >Office</label>
-                <input type="text" class="form-control" name="office" placeholder="Supports Office" style="width:70%" required>
+                <input type="text" class="form-control" name="office" placeholder="Supports Office"  required>
             </div>
             <div class="form-group">
                 <label >Position</label>
-                <input type="text" class="form-control" name="position" placeholder="In Charge" style="width:70%" required>
+                <input type="text" class="form-control" name="position" placeholder="In Charge"  required>
             </div>
             <div class="form-group">
-            <center>
-            <a href="{{route('supervisors.index')}}" class="btn btn-secondary mr-3">Cancel</a><button class="btn btn-info">Add</button>
-            </center>
+            <button class="btn btn-info mt-3 " style='width:100%'>ADD</button>
+            <a href="{{route('supervisors.index')}}" class="btn btn-secondary mr-3" style='width:100%'>CANCEL</a>
             </div>
         </form>
         </div>

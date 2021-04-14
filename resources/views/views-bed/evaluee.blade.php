@@ -12,7 +12,7 @@
         height:60px;
         bottom:40px;
         right:40px;
-        background-color:#00DBA3;
+        background-color:blue;
         color:#FFF;
         border-radius:50px;
         text-align:center;

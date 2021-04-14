@@ -28,9 +28,8 @@ Add Evaluee
                 <input type="text" class="form-control" name="lname" placeholder="Dela Cruz" required>
             </div>
             <div class="form-group">
-            <center>
-            <a href="{{route('evaluees.index')}}" class="btn btn-secondary mr-3">Cancel</a><button class="btn btn-info">Add</button>
-            </center>
+            <button class="btn btn-primary" style="width:100%">ADD</button>
+            <a href="{{route('evaluees.index')}}" class="btn btn-secondary mr-3" style="width:100%">CANCEL</a>
             </div>
         </form>
         </div>

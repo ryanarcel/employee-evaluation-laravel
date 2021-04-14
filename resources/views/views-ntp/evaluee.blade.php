@@ -17,7 +17,6 @@
         text-align:center;
         box-shadow: 2px 2px 3px #999;
         color: #4f5751;
-        
     }
 
     .my-float{

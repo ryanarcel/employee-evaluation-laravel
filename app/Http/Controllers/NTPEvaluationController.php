@@ -14,14 +14,14 @@ class NTPEvaluationController extends Controller
         $evaluations = Evaluation::where('tool_id','=', 4)->where('archived', 0)->orderBy('id', 'desc')->get();
 
         //return $evaluations;
-        return view('views-ntp.ntpEvaluation', compact("evaluations"));
+        return view('views-ntpEval.ntpEvaluation', compact("evaluations"));
     
     }
 
     public function create()
     {
         $evaluees = Evaluee::where('rank','NTP')->get();
-        return view('views-ntp.ntp-create', compact("evaluees"));
+        return view('views-ntpEval.ntp-create', compact("evaluees"));
     }
 
     public function store(Request $request)
@@ -53,10 +53,10 @@ class NTPEvaluationController extends Controller
     {
         $evaluation = Evaluation::find($id);
         if($evaluation->scores->count()===0){
-            return view("views-ntp.notFound");
+            return view("views-ntpEval.notFound");
         }
         else{
-            return view("views-ntp.eachEvaluation", compact("evaluation"));
+            return view("views-ntpEval.eachEvaluation", compact("evaluation"));
         }
     }
 
@@ -110,6 +110,6 @@ class NTPEvaluationController extends Controller
 
     public function print($id){
         $evaluation = Evaluation::find($id);
-        return view("views-ntp.printEvaluation", compact("evaluation"));
+        return view("views-ntpEval.printEvaluation", compact("evaluation"));
     }
 }
