@@ -53,6 +53,7 @@
                 @if(isset($item->criteria))
                 <tr>
                     <td class="col-md-4 statement pl-2">&nbsp;&nbsp;&nbsp;{{$item->statement}}</td>
+                    
                 </tr>
                 @else
                 <tr>
