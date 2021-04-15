@@ -94,7 +94,7 @@
 
             <div class="col mb-2 ml-4">
                 Name of Director: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
-                Unit/Office: <b>{{$evaluation->evaluee->office}}</b><br>
+                Office/Unit: <b>{{$evaluation->evaluee->office}}, {{$evaluation->evaluee->position}}</b><br>
             </div>
         @php 
             }

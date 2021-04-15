@@ -104,10 +104,10 @@ Route::group(['middleware' => ['customAuthTeacher']], function () {
 });
 
 //================students' page===============//
-Route::get('/student/access-key/', function(){
+Route::get('/evaluator/access-key/', function(){
     return view('views-student.access-key');
 })->name('access-key');
-Route::post('student/page/', 'RatingsController@access')->name('access-page');
+Route::post('evaluator/page/', 'RatingsController@access')->name('access-page');
 
 //Route::group(['middleware' => ['customAuthStudent']], function () {
     //subject for middleware

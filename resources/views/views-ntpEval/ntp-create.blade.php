@@ -9,11 +9,11 @@
     </div>
     <div class="col-md-12 pt-3 card bg-light shadow pl-5 pr-5">
       <div class=" mt-4 mb-4">
-      <form action="{{route('NTPevaluees.store')}}" method="post"  >
+      <form action="{{route('ntpevaluations.store')}}" method="post"  >
           @method('post')
           @csrf
           <input type="hidden" name="evaluee_id" id="evaluee_id" value="">
-          <input type="hidden" name="tool_id" value="3">
+          <input type="hidden" name="tool_id" value="4">
           
             <div class="form-group form-inline">
                 <label class="font-weight-bold float-left">Personnel:</label>
@@ -45,7 +45,7 @@
     <div class="modal-dialog col-md-12" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Search Supervisor</h5>
+          <h5 class="modal-title" id="exampleModalLabel">Search Personnel</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>

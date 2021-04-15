@@ -40,41 +40,41 @@
         <div class="card shadow mb-5" style="width: 100%;">
         <div class="card-body">
            
-            <table class="table">
+            <table class="table ">
             <thead>
                 <tr>
                     <th>&nbsp;</th>
                     <th>
-                        @if($eval->tool_id === 1)
-                            The administrator...
-                        @elseif($eval->tool_id === 2)
-                            The teacher...
-                        @elseif($eval->tool_id === 3)
-                            The supervisor...
-                        @else
-                            The personnel...
-                        @endif
+                  
+                        The personnel...
+                    
                     </th>
-                    <th>4</th>
-                    <th>3</th>
-                    <th>2</th>
-                    <th>1</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    <th>&nbsp;</th>
+                    
                     <th>Clear</th>
                 </tr>
             </thead>
             <tbody>
             @foreach($eval->tool->items as $item)
-                <tr>   
+                <tr>
                     <td class="numbering"></td>
-                    <td class="col-md-4 statement pl-2">&nbsp;&nbsp;&nbsp;{{$item->statement}}</td>
-                    <td><input type="radio" name="{{$item->id}}" class="score_{{$item->id}}" value="4"></td>
-                    <td><input type="radio" name="{{$item->id}}" class="score_{{$item->id}}" value="3"></td>
-                    <td><input type="radio" name="{{$item->id}}" class="score_{{$item->id}}" value="2"></td>
-                    <td><input type="radio" name="{{$item->id}}" class="score_{{$item->id}}" value="1"></td>
-                    <td><a href="#" class="badge badge-danger"><i data-feather="minus" onClick="$('.score_{{$item->id}}').prop('checked', false)"></i></a></td>
-                    {{-- <input type="hidden" name="item_{{$item->id}}" value="{{$item->id}}"> --}}
+                    <td class="col-md-4 pl-2">{{$item->statement}}</td>
+                    @foreach($item->criteria as $criterion)
+                        <td style="width:100%;  border-right: 0.5px solid #ccc;border-left: 0.5px solid #ccc;">
+                        <center>
+                            <div style="height:60px; width:100px;">
+                                {{$criterion->criterion}}<br>
+                            </div>
+                            <b>{{$criterion->points}}</b><br>
+                            <input type="radio" name="{{$item->id}}" class="score_{{$item->id}}" value="{{$criterion->points}}">
+                        </center>
+                        </td>
+                    @endforeach
+                    <td class="pt-3"><a href="#" class="badge badge-danger" style="position:relative; bottom:0px"><i data-feather="minus" onClick="$('.score_{{$item->id}}').prop('checked', false)"></i></a></td>
                 </tr>
-               
             @endforeach
             </tbody>
             </table>

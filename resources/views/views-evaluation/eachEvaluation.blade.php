@@ -7,8 +7,10 @@
     body {
         counter-reset: section;
     }
-
-    .statement::before {
+    .numbering{
+        width:5px;
+    }
+    .numbering::before {
         counter-increment: section;
         content: counter(section) ". ";
     }
@@ -59,9 +61,21 @@
 
 <div class="row mb-2">
     <div class="col mb-2 ml-4 mt-4">
-        Name of Teacher: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
-        Subject: <b>{{$evaluation->subject}}</b><br>
-        Session: <b>{{$evaluation->session}}</b>
+        @if($evaluation->tool_id === 1)
+            Name of Teacher: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
+            Subject: <b>{{$evaluation->subject}}</b><br>
+            Session: <b>{{$evaluation->session}}</b>
+        @elseif($evaluation->tool_id === 2)
+            Name of Administrator: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
+            Office/Unit: <b>{{$evaluation->evaluee->office}}, {{$evaluation->evaluee->position}}</b>
+        @elseif($evaluation->tool_id === 3)
+            Name of Supervisor: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
+            Office/Unit: <b>{{$evaluation->evaluee->office}}, {{$evaluation->evaluee->position}}</b>
+        @elseif($evaluation->tool_id === 4)
+            Name of Personnel: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
+            Office/Unit: <b>{{$evaluation->evaluee->office}}, {{$evaluation->evaluee->position}}</b>
+        @endif
+
     </div>
     <div class="col mb-2 ml-5 mt-4">
         Date of evaluation: <b>{{$evaluation->date}}</b><br>
@@ -75,6 +89,7 @@
         <table class="table" style="border-bottom: 2px solid #ccc">
         <thead>
             <tr>
+                <th>&nbsp;</th>
                 <th class="theTeacher col-md-4 mr-5 bg-white endColumn">The teacher...</th>
                 <th class="text-center bg-white">4</th>
                 <th class=" bg-white"></th>
@@ -104,8 +119,9 @@
                // $countItem = 0;
             @endphp
             <tr> 
+                <td class="numbering"></td>
                 <td class="col-md-4 statement mr-5 endColumn ">
-                    &nbsp;&nbsp;&nbsp;{{$item->statement}}
+                   {{$item->statement}}
                  
                 </td>
 
@@ -241,7 +257,7 @@
         @endforeach
             <tr>
                 <td colspan="1"><span class="float-right font-weight-bold mr-1">Total</span></td>
-                <td colspan="15" class="sumwm"><span class="float-right mr-1 font-italic font-weight-bold text-primary"></span></td>
+                <td colspan="16" class="sumwm"><span class="float-right mr-1 font-italic font-weight-bold text-primary"></span></td>
             </tr>
         </tbody>
         </table>

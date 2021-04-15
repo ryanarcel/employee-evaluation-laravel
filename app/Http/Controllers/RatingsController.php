@@ -26,7 +26,8 @@ class RatingsController extends Controller
 
                     if($eval->tool_id === 4){
                         // return "NTP";
-                        return view('views-student.ratings-page', compact('evaluation'));
+                        return view('views-student.ratingsNTP-page', compact('evaluation'));
+                        //echo "tae";
                     }
                     else{
                         $status = $eval->status;
