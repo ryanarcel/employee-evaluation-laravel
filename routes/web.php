@@ -57,6 +57,8 @@ Route::group(['middleware' => ['customAuthAdmin']], function () {
     Route::get('/tools/select', 'ToolController@getTools')->name('pick-tool');
     Route::get('/tools/{id}', 'ToolController@getItems')->name('showTool');
     Route::post('/storeItem', 'ToolController@storeItem')->name("storeItem");
+    Route::post('/storeCategory/{id}', 'ToolController@storeCategory')->name("storeCategory");
+    Route::post('/storeCategoryItem/{id}', 'ToolController@storeCategoryItem')->name("storeCategoryItem");
     Route::post('/updateItem/{id}', 'ToolController@updateItem')->name("updateItem");
     Route::get('/deleteItem/{id}', 'ToolController@deleteItem')->name("deleteItem");
 

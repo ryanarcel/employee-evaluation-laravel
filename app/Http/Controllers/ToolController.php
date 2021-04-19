@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Tool;
 use App\ToolItem;
 use App\Criterion;
+use App\Category;
 
 class ToolController extends Controller
 {
@@ -18,24 +19,81 @@ class ToolController extends Controller
         $tool =  Tool::find($id);
         $items = $tool->items;
 
-        return view('admin.toolItems')->with([
-            'items' => $items,
-            'id' => $id,
-            'header' => $tool->toolname
+        if($id==1){
+            return view('admin.toolItems')->with([
+                'items' => $items,
+                'id' => $id,
+                'header' => $tool->toolname
             ]);
+        }
+        else if($id==2){
+            $categories = Category::where('tool_id',"=",2)->get();
+
+            return view('admin.admintool')->with([
+                'categories' => $categories,
+                'items' => $items,
+                'id' => $id,
+                'header' => $tool->toolname
+            ]);
+        }
+        else if($id==3){
+            $categories = Category::where('tool_id',"=",3)->get();
+
+            return view('admin.supervisoryTool')->with([
+                'categories' => $categories,
+                'items' => $items,
+                'id' => $id,
+                'header' => $tool->toolname
+            ]);
+        }
+
+        else if($id==4){
+            $categories = Category::where('tool_id',"=",4)->get();
+
+            return view('admin.ntpTool')->with([
+                'categories' => $categories,
+                'items' => $items,
+                'id' => $id,
+                'header' => $tool->toolname
+            ]);
+        }
+
+    }
+
+    public function storeCategory(Request $request, $id){
+        //return $id;
+        $category = new Category;
+        $category->category = $request->category;
+        $category->tool_id = $id;
+        $category->save();
+        return redirect()->back();
     }
 
     public function storeItem(Request $request){
         $item = new ToolItem;
         $item->statement = $request->statement;
         $item->tool_id = $request->toolId;
-      
-         $item->save();
+        $item->save();
+
+
+
+      // return count($request->criterion);
+       return redirect()->back();
+     
+    }
+
+    public function storeCategoryItem(Request $request, $id){
+        //return $id;
+
+        $item = new ToolItem;
+        $item->category_id = $id;
+        $item->tool_id = $request->toolId;
+        $item->statement = $request->statement;
+        $item->save();
 
         $latestItemId = ToolItem::latest()->first();
 
         $latestItemId = $latestItemId->id;
-
 
         if(isset($request->criterion)){
             $criterion = $request->criterion;
@@ -52,11 +110,8 @@ class ToolController extends Controller
                 //  echo "<br>";
             }
         }
-
-      // return count($request->criterion);
-       return redirect()->back();
-     
-    }
+        return redirect()->back();
+    }   
 
     public function updateItem(Request $request, $id){
         //return $id;

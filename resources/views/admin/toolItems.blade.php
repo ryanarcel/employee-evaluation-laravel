@@ -53,7 +53,7 @@
             <ul id="item-list" class="list-group">
                 @foreach($items as $item)
                 <li class="list-li list-group-item ml-3">            
-                <a href="#" class='item-link' class="item-link">{{$item->statement}}</a>
+                <a href="#" class='item-link' >{{$item->statement}}</a>
                 <input type="hidden" value="{{$item->id}}">
                 </li>
                 @endforeach
@@ -156,7 +156,7 @@
             $(this).html()="";
         })
 
-         $('#add_ite').submit(function(event){
+         $('#add_item').submit(function(event){
          event.preventDefault();
              var statement = $("#statement").val();
              $.ajax({

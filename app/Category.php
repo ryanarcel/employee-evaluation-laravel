@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Part extends Model
+class Category extends Model
 {
-    protected $table = 'item_parts';
+    //protected $table = 'item_parts';
 
     public function tool(){
         return $this->belongsTo("App\Tool", "tool_id");

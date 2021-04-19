@@ -12,6 +12,10 @@ class ToolItem extends Model
         return $this->belongsTo("App\Tool", "tool_id");
     }
 
+    public function category(){
+        return $this->belongsTo("App\Category");
+    }
+
     public function totalscores(){
         return $this->hasMany("App\Total");
     }
