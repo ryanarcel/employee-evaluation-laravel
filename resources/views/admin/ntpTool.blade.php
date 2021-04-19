@@ -41,6 +41,9 @@
         .criterion{
             width: 80%;
         }
+        table td{
+            text-align: center;
+        }
 
     </style>
 @stop
@@ -61,6 +64,18 @@
                             <li class="mt-2 mb-2">            
                                 <a href="#" class='item-link' >{{$item->statement}}</a>
                                 <input type="hidden" value="{{$item->id}}">
+                                <table style="width:100%" class="table table-sm">
+                                    </tr>
+                                    @foreach($item->criteria as $criterion)
+                                        <td class="text-primary">{{$criterion->criterion}}</td>                                        
+                                    @endforeach
+                                    </tr>
+                                    <tr>
+                                    @for($i = 1; $i<=count($item->criteria); $i++)
+                                        <td class="text-primary">{{$i}}</td>
+                                    @endfor
+                                    </tr>
+                                </table>
                             </li>
                             @endforeach
                         </ul>
@@ -86,7 +101,7 @@
   <div class="modal-dialog">
   <form action="{{route('storeCategory', $id)}}" method="post">
     @csrf
-    <input type="hidden" name="toolId" value="2">
+    <input type="hidden" name="toolId" value="4">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Add Category</h5>
@@ -113,7 +128,7 @@
   <form method="post" id="itemForm">
     @csrf
     @method('POST')
-    <input type="hidden" name="toolId" value="2">
+    <input type="hidden" name="toolId" value="4">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title">Add Item</h5>

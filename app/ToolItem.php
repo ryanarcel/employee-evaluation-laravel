@@ -21,7 +21,7 @@ class ToolItem extends Model
     }
 
     public function criteria(){
-        return $this->hasMany("App\Criterion");
+        return $this->hasMany("App\Criterion", "item_id");
     }
     
     public function getDateFormat()
