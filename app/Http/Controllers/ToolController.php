@@ -91,9 +91,7 @@ class ToolController extends Controller
         $item->statement = $request->statement;
         $item->save();
 
-        $latestItemId = ToolItem::latest()->first();
-
-        $latestItemId = $latestItemId->id;
+        $latestItemId = $item->id;
 
         if(isset($request->criterion)){
             $criterion = $request->criterion;
