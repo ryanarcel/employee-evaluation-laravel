@@ -15,6 +15,9 @@ class Category extends Model
     public function items(){
         return $this->hasMany("App\ToolItem");
     }
+    public function scores(){
+        return $this->hasMany("App\ToolItem");
+    }
 
     public function getDateFormat()
     {

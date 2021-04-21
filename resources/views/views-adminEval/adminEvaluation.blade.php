@@ -77,6 +77,7 @@
                 <div class="col">
                     Due Date: <span class="text-info"><b>{{date('F d, Y', strtotime($evaluation->date))}}</b></span><br>
                     Created on: <span class="text-info"> {{ date('F d, Y', strtotime($evaluation->created_at)) }}</span>
+                    Evaluator Type: <span class="text-info">{{$evaluation->type}}</span>
                 </div>
                 <div class="col pl-5 link-div">
                     Access Key: <span class="text-success font-weight-bold">{{$evaluation->access_key}}</span><br>

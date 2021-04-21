@@ -38,18 +38,15 @@
         @foreach ($evaluee->evaluations as $evaluation)
         <tr>
             <td>
-            <div class="card pt-3 pl-5 pb-2 pr-5 shadow mb-2 bg-light" style="width:150%">
+            <div class="card pt-3 pl-5 pb-3 pr-5 shadow mb-2 bg-light" style="width:150%">
                 
                                 <div class="row">
                                     <div class="col">
-                                        Evaluation Date: <span class="text-primary"><b>{{date('F d, Y', strtotime($evaluation->date))}}</b></span><br><br>
-                                        Subject: <span class="text-primary"><b>{{$evaluation->subject}}</b></span><br>
-                                        School Year: <span class="text-primary"><b>{{$evaluation->SY_from}}-{{$evaluation->SY_to}}</b></span><br>
-                                        Semester: <span class="text-primary"><b>{{$evaluation->semester}}</b></span><br>
-                                        Term: <span class="text-primary"><b>{{$evaluation->term}}</b></span>
+                                        Evaluation Date: <span class="text-primary"><b>{{date('F d, Y', strtotime($evaluation->date))}}</b></span><br>
+                                        School Year: <span class="text-primary"><b>{{$evaluation->SY_from}}-{{$evaluation->SY_to}}</b></span>
                                     </div>
                                     <div class="col">
-                                        Course: <span class="text-primary"><b>{{$evaluation->course}}</b></span><br><br>
+                                        Evaluator Type: <span class="text-primary"><b>{{$evaluation->type}}</b></span><br>
                                         <a href="{{route('evaluations.show', [$evaluation->id, 'origin'=>'evaluee'])}}" class="badge badge-success"><i data-feather="eye"></i> View Results</a>
                                     </div>
                                         <input type="checkbox" class="checks" name="evaluations[]" value="{{$evaluation->id}}" >

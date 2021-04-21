@@ -75,10 +75,8 @@ class ToolController extends Controller
         $item->tool_id = $request->toolId;
         $item->save();
 
-
-
       // return count($request->criterion);
-       return redirect()->back();
+        return redirect()->back();
      
     }
 

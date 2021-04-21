@@ -115,6 +115,7 @@ Route::post('evaluator/page/', 'RatingsController@access')->name('access-page');
     //subject for middleware
 
     Route::post('student/page/submit', 'RatingsController@submit')->name('submit-scores');
+    Route::post('student/page/submit-admin/', 'RatingsController@submitAdmin')->name('submit-scoresAdmin');
     Route::post('student/page/submit-total', 'RatingsController@submitTotal')->name('submit-totalscores');
     
     Route::get('student/key/not-found', function(){

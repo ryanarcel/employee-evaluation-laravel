@@ -24,10 +24,13 @@ class RatingsController extends Controller
                 foreach ($evaluation as $eval){
                     echo $eval->tool_id;
 
-                    if($eval->tool_id === 4){
+                    if($eval->tool_id === 2){
+                        return view('views-student.ratingsAdmin', compact('evaluation'));
+                    }
+                    else if($eval->tool_id === 4){
                         // return "NTP";
                         return view('views-student.ratingsNTP-page', compact('evaluation'));
-                        //echo "tae";
+                         
                     }
                     else{
                         $status = $eval->status;
@@ -120,10 +123,35 @@ class RatingsController extends Controller
                 'student_id' => $stud_id
               ]);
            }
+
+
            
        return redirect()->route('success-eval');
-       
-    
+    }
+
+    public function submitAdmin(Request $request){
+
+        $comment = new Comment;
+        
+        for($i = 0; $i<count($request->ratings); $i++){
+            $score = Score::create([
+                'evaluation_id' => $request->evaluation_id,
+                'tool_id' => $request->tool_id,
+                'category_id' => $request->category_id,
+                'item_id' => $request->item_ids[$i],
+                'score' => $request->ratings[$i],
+                'student_id' => 0
+              ]);
+        }
+
+        if($request->comment){
+            $comment->comment = $request->comment;
+            $comment->evaluation_id = $request->evaluation_id;
+            $comment->student_id = 0;
+            $comment->save();
+        }
+
+        return redirect()->route('success-eval');
     }
 
     public function submitTotal(Request $request){

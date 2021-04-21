@@ -22,10 +22,21 @@
             </div>
 
           <div class="form-group form-inline">
-              <label class="font-weight-bold mr-3">Evaluation Due Date:</label>
+              <label class="font-weight-bold mr-3">Evaluation Schedule Date:</label>
               <input type="date" name="date" required  class="form-control" style="width:25%">
           </div>
           
+          <div class="form-group form-inline">
+              <label class="font-weight-bold mr-3">Evaluator type:</label>
+              <select name="type" class="form-control" style="width:33%">
+                <option value="Self">Self</option>
+                <option value="Peer">Peer</option>
+                <option value="Heads">Heads</option>
+                <option value="Others">Others</option>
+              </select>
+             
+          </div>
+
           <div class="form-group pt-2">
             <div class="form-inline">
               <b>SY From</b> <input type="number" name="SYfrom" class="form-control yrpicker col-md-3 ml-2 mr-3">

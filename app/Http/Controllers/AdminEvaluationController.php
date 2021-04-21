@@ -39,6 +39,7 @@ class AdminEvaluationController extends Controller
         $evaluation->semester = 0;
         $evaluation->term = 0;
         $evaluation->status = 0;
+        $evaluation->type = $request->type;
 
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
         $key = substr(str_shuffle($permitted_chars), 0, 6);
