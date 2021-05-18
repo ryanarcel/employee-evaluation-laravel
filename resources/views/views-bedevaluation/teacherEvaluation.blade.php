@@ -46,7 +46,7 @@
 @section('content') 
 
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h5">College Teacher Evaluation</h1>
+        <h1 class="h5">BED Teacher Evaluation</h1>
     </div>
 <div class="row">   
     <div class="col-md-8 offset-md-1" >
@@ -84,13 +84,13 @@
                     Access Key: <span class="text-success font-weight-bold">{{$evaluation->access_key}}</span><br>
                     
                     @if($evaluation->status===0)
-                        <a href="{{route('openClose',['id'=>$evaluation->id, 'status'=>1, 'origin'=>'list'])}}" class="text-muted mr-2" ><i data-feather="toggle-left"></i> Closed</a>
+                        <a href="{{route('bedOpenClose',['id'=>$evaluation->id, 'status'=>1, 'origin'=>'list'])}}" class="text-muted mr-2" ><i data-feather="toggle-left"></i> Closed</a>
                     @else 
-                        <a href="{{route('openClose',['id'=>$evaluation->id, 'status'=>0, 'origin'=>'list'])}}" class="text-success mr-2"><i data-feather="toggle-right"></i> Open</a>
+                        <a href="{{route('bedOpenClose',['id'=>$evaluation->id, 'status'=>0, 'origin'=>'list'])}}" class="text-success mr-2"><i data-feather="toggle-right"></i> Open</a>
                     @endif
                     <br>
- 
-                    <br><a href="evaluations/{{$evaluation->id}}"><i data-feather="info"></i> View Results</a><br>
+                
+                    <br><a href="bedevaluations/{{$evaluation->id}}"><i data-feather="info"></i> View Results</a><br>
                 </div>
                 </div>
             </div>
@@ -120,7 +120,7 @@
           </ul>
         </div>
 
-        <a href="{{route('evaluations.create')}}" class="float">
+        <a href="{{route('bedevaluations.create')}}" class="float">
             <span data-feather="plus" class="my-float"></span>
         </a>
 

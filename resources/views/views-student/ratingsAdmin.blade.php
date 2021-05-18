@@ -158,10 +158,7 @@
     </div>
     </div><!---close row-->
 
-
     </div>
-
-
     @endforeach
 @endisset
 

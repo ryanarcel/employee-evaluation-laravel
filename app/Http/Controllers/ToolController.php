@@ -20,14 +20,21 @@ class ToolController extends Controller
         $items = $tool->items;
 
         if($id==1){
-            return view('admin.toolItems')->with([
+            return view('admin.collegeToolItems')->with([
                 'items' => $items,
                 'id' => $id,
                 'header' => $tool->toolname
             ]);
         }
         else if($id==2){
-            $categories = Category::where('tool_id',"=",2)->get();
+            return view('admin.bedToolItems')->with([
+                'items' => $items,
+                'id' => $id,
+                'header' => $tool->toolname
+            ]);
+        }
+        else if($id==3){
+            $categories = Category::where('tool_id',"=",3)->get();
 
             return view('admin.admintool')->with([
                 'categories' => $categories,
@@ -36,8 +43,8 @@ class ToolController extends Controller
                 'header' => $tool->toolname
             ]);
         }
-        else if($id==3){
-            $categories = Category::where('tool_id',"=",3)->get();
+        else if($id==4){
+            $categories = Category::where('tool_id',"=",4)->get();
 
             return view('admin.supervisoryTool')->with([
                 'categories' => $categories,
@@ -47,8 +54,8 @@ class ToolController extends Controller
             ]);
         }
 
-        else if($id==4){
-            $categories = Category::where('tool_id',"=",4)->get();
+        else if($id==5){
+            $categories = Category::where('tool_id',"=",5)->get();
 
             return view('admin.ntpTool')->with([
                 'categories' => $categories,

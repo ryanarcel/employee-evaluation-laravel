@@ -7,10 +7,8 @@
     body {
         counter-reset: section;
     }
-    .numbering{
-        width:5px;
-    }
-    .numbering::before {
+
+    .statement::before {
         counter-increment: section;
         content: counter(section) ". ";
     }
@@ -46,36 +44,30 @@
         @else
             <a href="{{route('openClose',['id'=>$evaluation->id, 'status'=>1, 'origin'=>'indiv'])}}" class="text-muted mr-2" id="openClose"><i data-feather="toggle-right"></i> Closed</a>
         @endif
-    
+        @if($evaluation->grant_access===0)
+            <a href="{{route('accessNot',['id'=>$evaluation->id, 'access'=>1, 'origin'=>'indiv'])}}" class="mr-2 text-muted"><i data-feather="eye-off"></i> Hidden from teacher</a>
+        @else
+            <a href="{{route('accessNot',['id'=>$evaluation->id, 'access'=>0, 'origin'=>'indiv'])}}" class="mr-2 text-success"><i data-feather="eye"></i> Shown to teacher</a>
+        @endif
         
         <a href="{{route('archival', $evaluation->id)}}" class="mr-2 text-danger" onclick="confirmArchival()"><i data-feather="archive"></i> Archive</a>
-        <a href="{{route('print', $evaluation->id)}}?tool={{$evaluation->tool_id}}" class=""><i data-feather="printer"></i> Print</a>
+        <a href="{{route('print', $evaluation->id)}}" class=""><i data-feather="printer"></i> Print</a>
     </div>
 </div>
 
-
+{{-- <div class="float-left mb-5"> --}}
+    <a href="{{route('bedevaluations.index')}}"><i data-feather="arrow-left"></i> Return</a>
+{{-- </div> --}}
 
 <div class="row mb-2">
     <div class="col mb-2 ml-4 mt-4">
-        @if($evaluation->tool_id === 1)
-            Name of Teacher: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
-            Subject: <b>{{$evaluation->subject}}</b><br>
-            Session: <b>{{$evaluation->session}}</b>
-        @elseif($evaluation->tool_id === 2)
-            Name of Administrator: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
-            Office/Unit: <b>{{$evaluation->evaluee->office}}, {{$evaluation->evaluee->position}}</b>
-        @elseif($evaluation->tool_id === 3)
-            Name of Supervisor: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
-            Office/Unit: <b>{{$evaluation->evaluee->office}}, {{$evaluation->evaluee->position}}</b>
-        @elseif($evaluation->tool_id === 4)
-            Name of Personnel: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
-            Office/Unit: <b>{{$evaluation->evaluee->office}}, {{$evaluation->evaluee->position}}</b>
-        @endif
-
+        Name of Teacher: <b>{{$evaluation->evaluee->lname}}, {{$evaluation->evaluee->fname}}</b><br>
+        Subject: <b>{{$evaluation->subject}}</b><br>
+        Session: <b>{{$evaluation->session}}</b>
     </div>
     <div class="col mb-2 ml-5 mt-4">
-        Date of evaluation: <b>{{$evaluation->date}}</b><br>
-        Course: <b>{{$evaluation->course}}<br>
+        Date: <b>{{$evaluation->date}}</b><br>
+        Course: <b>course</b><br>
         School Year: <b>{{$evaluation->SY_from}}-{{$evaluation->SY_to}}</b>
     </div>
 </div>
@@ -85,7 +77,6 @@
         <table class="table" style="border-bottom: 2px solid #ccc">
         <thead>
             <tr>
-                <th>&nbsp;</th>
                 <th class="theTeacher col-md-4 mr-5 bg-white endColumn">The teacher...</th>
                 <th class="text-center bg-white">4</th>
                 <th class=" bg-white"></th>
@@ -106,20 +97,16 @@
         </thead>
         <tbody>
         
-    
+        <form action="{{route('submit-totalscores')}}" method="post" id="theForm">
+            @method('post')
+            @csrf
             <input type="hidden" name="evaluation" value="{{$evaluation->id}}">
-         @php   $countItem = count($evaluation->tool->items); @endphp
         @foreach($evaluation->tool->items as $item)
             @php
-                $studTotal = count($evaluation->students);
-               // $countItem = 0;
+                $studTotal = count($evaluation->students)
             @endphp
             <tr> 
-                <td class="numbering"></td>
-                <td class="col-md-4 statement mr-5 endColumn ">
-                   {{$item->statement}}
-                 
-                </td>
+                <td class="col-md-4 statement mr-5 endColumn ">&nbsp;&nbsp;&nbsp;{{$item->statement}}</td>
 
                 {{-- column 4 --}}
                 <td class="text-center text-primary font-weight-bold bg-grayest">
@@ -175,8 +162,7 @@
                 <td class="text-center bg-moregrayer endColumn font-weight-bold">
                     {{number_format($per3 * 100, 0)}}
                 </td>
-
-
+                
                 {{-- column 2 --}}
                 <td class="text-center text-primary font-weight-bold bg-grayer">
                     @php
@@ -242,18 +228,18 @@
                 </td>
                 <td class="text-center text-primary font-weight-bold wm">
                     @php
-                        $totalwm = number_format((($per4 * 4)  + ($per3 * 3) + ($per2 * 2) + ($per1 * 1) ), 1);
-                        echo $totalwm;
+                        $totalwm = number_format((($per4 * 4)  + ($per3 * 3) + ($per2 * 2) + ($per1 * 1) ), 0);
+                        echo $totalwm
                     @endphp
-                    
                     <input type="hidden" name="{{$item->id}}" value="{{$totalwm}}">
                 </td>
             </tr>
             
         @endforeach
+    </form>
             <tr>
                 <td colspan="1"><span class="float-right font-weight-bold mr-1">Total</span></td>
-                <td colspan="16" class="sumwm"><span class="float-right mr-1 font-italic font-weight-bold text-primary"></span></td>
+                <td colspan="15" class="sumwm"><span class="float-right mr-1 font-italic font-weight-bold text-primary"></span></td>
             </tr>
         </tbody>
         </table>
@@ -280,11 +266,11 @@ $(document).ready(function(event){
     $('.wm').each(function(i, obj) {
         sumwm += parseInt($(this).html());
     });
-    var countItem = {{$countItem}};
-    sumwm = sumwm / countItem;
-    $('.sumwm span').html(sumwm.toFixed(1));
-    // console.log(countItem)
+
+    $('.sumwm span').html(sumwm);
+     console.log(sumwm)
     
+
 })
 
 function confirmArchival(){

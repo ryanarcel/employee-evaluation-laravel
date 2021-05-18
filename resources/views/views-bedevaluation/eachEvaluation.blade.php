@@ -42,11 +42,11 @@
     <span class="h5">{{$evaluation->evaluee->fname}} {{$evaluation->evaluee->lname}}</span>
     <div class="float-right">
         @if($evaluation->status===1)
-            <a href="{{route('openClose',['id'=>$evaluation->id, 'status'=>0, 'origin'=>'indiv'])}}" class="text-success mr-2" id="openClose"><i data-feather="toggle-left"></i> Open</a>
+            <a href="{{route('bedOpenClose',['id'=>$evaluation->id, 'status'=>0, 'origin'=>'indiv'])}}" class="text-success mr-2" id="openClose"><i data-feather="toggle-left"></i> Open</a>
         @else
-            <a href="{{route('openClose',['id'=>$evaluation->id, 'status'=>1, 'origin'=>'indiv'])}}" class="text-muted mr-2" id="openClose"><i data-feather="toggle-right"></i> Closed</a>
+            <a href="{{route('bedOpenClose',['id'=>$evaluation->id, 'status'=>1, 'origin'=>'indiv'])}}" class="text-muted mr-2" id="openClose"><i data-feather="toggle-right"></i> Closed</a>
         @endif
-    
+ 
         
         <a href="{{route('archival', $evaluation->id)}}" class="mr-2 text-danger" onclick="confirmArchival()"><i data-feather="archive"></i> Archive</a>
         <a href="{{route('print', $evaluation->id)}}?tool={{$evaluation->tool_id}}" class=""><i data-feather="printer"></i> Print</a>

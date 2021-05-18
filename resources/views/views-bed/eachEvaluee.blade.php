@@ -24,7 +24,7 @@
         <p style="font-size: 1em;">{{$errors->first()}}</p>
         </div>
     @else
-        <form action="{{route('summarize', $evaluee->id)}}" method="post" id="theForm">
+        <form action="{{route('bed-summarize', $evaluee->id)}}" method="post" id="theForm">
         @csrf 
         @method("post")
         <div class="row">
@@ -45,12 +45,11 @@
                                         Evaluation Date: <span class="text-primary"><b>{{date('F d, Y', strtotime($evaluation->date))}}</b></span><br><br>
                                         Subject: <span class="text-primary"><b>{{$evaluation->subject}}</b></span><br>
                                         School Year: <span class="text-primary"><b>{{$evaluation->SY_from}}-{{$evaluation->SY_to}}</b></span><br>
-                                        Semester: <span class="text-primary"><b>{{$evaluation->semester}}</b></span><br>
-                                        Term: <span class="text-primary"><b>{{$evaluation->term}}</b></span>
+        
                                     </div>
                                     <div class="col">
                                         Course: <span class="text-primary"><b>{{$evaluation->course}}</b></span><br><br>
-                                        <a href="{{route('evaluations.show', [$evaluation->id, 'origin'=>'evaluee'])}}" class="badge badge-success"><i data-feather="eye"></i> View Results</a>
+                                        <a href="{{route('evaluations.show', [$evaluation->id, 'origin'=>'evaluee'])}}" class="badge badge-info"><i data-feather="eye"></i> View Results</a>
                                     </div>
                                         <input type="checkbox" class="checks" name="evaluations[]" value="{{$evaluation->id}}" >
                                 </div>  

@@ -44,7 +44,8 @@
             </center>
             <div class="overlay">
                 <h2>Teacher<br>evaluation</h2>
-            <a class="info" href="{{route('evaluations.index')}}">Proceed</a>
+            <!-- <a class="info" href="{{route('evaluations.index')}}">Proceed</a> -->
+            <a class="info teacherChoice" href="#" data-toggle="modal" data-target="#teacher-Modal">Proceed</a>
             </div>
         </div>
     </div>   
@@ -60,8 +61,34 @@
             </div>
         </div>
     </div> 
-
-    
   </div>
 
+<!-- teacher modal -->
+<div class="modal fade" tabindex="-1" id="teacher-Modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5>Select Department</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+      <div class="modal-body">
+        <div class="col-md-6 offset-md-3">
+            <a href="{{route('bedevaluations.index')}}" class="btn btn-success mb-2" style="width:100%">BED</a>
+            <a href="{{route('evaluations.index')}}" class="btn btn-warning text-white" style="width:100%">College</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+@stop
+
+@section('scripts')
+<script>
+    $(document).ready(function(){
+
+    })
+</script>
 @stop

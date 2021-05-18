@@ -72,6 +72,7 @@ Route::group(['middleware' => ['customAuthAdmin']], function () {
 
     Route::resource('teacherTools', 'ToolItemController');
     Route::resource('evaluations', 'EvaluationController');
+    Route::resource('bedevaluations', 'BEDEvaluationController');
     Route::post('/fetchEvaluations','EvaluationController@fetch')->name('fetchTeacher');
     Route::resource('adminevaluations', 'AdminEvaluationController');
     Route::resource('supervevaluations', 'SupervEvaluationController');
@@ -85,11 +86,14 @@ Route::group(['middleware' => ['customAuthAdmin']], function () {
     })->name("newEvaluee");
 
     Route::get('openClose/{id}/{status}/{origin}', 'EvaluationController@openClose')->name('openClose');
+    Route::get('bedOpenClose/{id}/{status}/{origin}', 'BEDEvaluationController@openClose')->name('bedOpenClose');
     Route::get('accessNot/{id}/{access}/{origin}', 'EvaluationController@accessNot')->name('accessNot');
     Route::get('archival/{id}/', 'EvaluationController@archival')->name('archival');
     Route::get('evaluation/print/{id}/', 'EvaluationController@print')->name('print');
     Route::post('evaluee/{id}/summarize/', 'EvalueeController@summarize')->name('summarize');
+    Route::post('bedevaluee/{id}/summarize/', 'EvalueeController@bedsummarize')->name('bed-summarize');
     Route::get('evaluee/{id}/print-summary', 'EvalueeController@printSummary')->name('printSummary');
+    Route::get('bedevaluee/{id}/print-summary', 'EvalueeController@bedPrintSummary')->name('bedPrintSummary');
 
     Route::get('adminOpenClose/{id}/{status}/{origin}', 'AdminEvaluationController@openClose')->name('adminOpenClose');
     Route::get('supervOpenClose/{id}/{status}/{origin}', 'SupervEvaluationController@openClose')->name('supervOpenClose');

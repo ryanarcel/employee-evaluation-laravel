@@ -45,15 +45,7 @@
                 <tr>
                     <th>&nbsp;</th>
                     <th>
-                        @if($eval->tool_id === 1)
-                            The administrator...
-                        @elseif($eval->tool_id === 2)
-                            The teacher...
-                        @elseif($eval->tool_id === 3)
-                            The supervisor...
-                        @else
-                            The personnel...
-                        @endif
+                       The teacher...
                     </th>
                     <th>4</th>
                     <th>3</th>

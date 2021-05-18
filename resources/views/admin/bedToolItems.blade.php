@@ -91,11 +91,7 @@
                 <label for="statement"><b>Create Item</b></label>
                 <textarea name="statement" id="statement" style="width:400px; height:100px; resize:none; padding-left:0px" class="form-control mb-2">
                 </textarea>
-                <a href="#" class="add-criteria" data-toggle="tooltip" data-placement="top" title="Setup rubric" >
-                    <span data-feather="plus-circle"></span>
-                </a>
-                
-                <ul id="view-criteria" class="card card-body list-group pl-3"></ul>
+            
               
                 <input type="hidden" name="toolId" value="{{$id}}">
                 <input type="submit" class="btn btn-primary mt-3" id="add" value="Create Item">
@@ -107,40 +103,7 @@
        
         </div>   
     </div>
-    <!-- Setup Rubrics modal -->
-    <div class="modal" tabindex="-1" role="dialog" id="criteriaModal">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h5 class="modal-title">Setup Rubrics</h5>
-                <button type="button"  class="close" data-dismiss="modal" aria-label="Close" >
-                <span aria-hidden="true" class="criteriaModal-close">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="col-md-10 col-lg-10 offset-md-2 offset-lg-2">
-                    <div class="input-group col-input-group mb-3">
-                        <div class="input-group-append">
-                            <input type="number" id="noOfColumns" class="form-control" style="width:350px" placeholder="Enter maximum number of criteria points">
-                        </div>
-                        <button class="btn btn-info ml-3" id="generate-table">Generate Table</button>
-                    </div>
-                </div>
-                <table id="rubrics-table" style="display:none; width:100%" >
-                    <tr id="points"></tr>
-                    <tr id="criterion"></tr>
-                </table>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success text-white" id="btn-complete">Set</button>
-                <button type="button" class="btn btn-secondary criteriaModal-close" data-dismiss="modal">Close</button>
-            </div>
-         
-        </div>
-    </div>
-    </div>
-
+    
 
 @stop
 
@@ -166,11 +129,11 @@
                  // dataType:"json",
                  success:function(data){
                      var len = $("#item-list li").length;
-                     var html = $("<li class='list-li'><a href='#' class='item-link'>"+statement+"</a></li>").hide().fadeIn(400);
+                     var html = $("<li class='list-li list-group-item ml-3'><a href='#' class='item-link'>"+statement+"</a></li>").hide().fadeIn(400);
                      var status = $("<div class='alert alert-success' role='alert'><b>Success!</b> Item adedd.</div>").hide().fadeIn(300);
-                     $('#item-list').append(html)
+                     $('#item-list').append(html);
                      $("#statement").val("");
-                     $(".status").html(status)
+                     $(".status").html(status);
                      $(".alert").delay(2500).fadeOut(500);
                  },
                  error: function (e) {      
@@ -194,60 +157,6 @@
              if (!confirm('Are you sure?'))
                  e.preventDefault();
          });
-
-         $(".add-criteria").click(function(){
-            $("#criteriaModal").fadeIn(300);
-         })
-
-         $(".criteriaModal-close").click(function(){
-            $("#criteriaModal").fadeOut(300);
-         })
-
-         $("#generate-table").click(function(){
-            let n = parseInt($("#noOfColumns").val())
-            $(".col-input-group").hide(200);
-            generateTable(n);
-            $("#rubrics-table").show(300);
-         })
-         
-         function generateTable(n){
-             let points = $("#points");
-             let criterion = $("#criterion");
-
-             points.empty();
-             criterion.empty();
-
-             for (let i = 1; i <= n; i++) {
-                points.append(
-                    "<td class='center'><b>"+i+"</b></td>"
-                );
-                criterion.append(
-                    "<td class='ml-2 mr-2'><textarea type='text' class='form-control' id='criteria-statement"+i+"' placeholder='Enter criterion'></textarea></td>"
-                );
-             }
-
-                $("#btn-complete").click(function(){
-                    let objects = {}
-
-                    let viewCriteria = $("#view-criteria"); 
-                    viewCriteria.empty();
-
-                    for (let i = 1; i <= n; i++) {
-                        let criterStatement = $("#criteria-statement"+ i).val();
-                        objects[i] = criterStatement;
-
-                        viewCriteria.append(
-                            "<li class='center list-group-item'>"+i+" - <input type='text' class='for-review' name='criterion[]' value='"+criterStatement+"'></li>"
-                        );
-                    }
-                    console.log(objects)      
-                    $("#criteriaModal").fadeOut(300); 
-                    $("#view-criteria").show(100);
-
-                })
-         }
-
-
       
      });
 </script>

@@ -5,72 +5,58 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h5">Setup Evaluation</h1>
+        <h1 class="h5">Setup BED Teacher Evaluation</h1>
     </div>
     <div class="col-md-12 pt-3 card bg-light shadow pl-5 pr-5">
       <div class=" mt-4 mb-4">
-      <form action="{{route('evaluations.store')}}" method="post"  >
+      <form action="{{route('bedevaluations.store')}}" method="post"  >
           @method('post')
           @csrf
           <input type="hidden" name="evaluee_id" id="evaluee_id" value="">
-          <input type="hidden" name="tool_id" value="1">
+          <input type="hidden" name="tool_id" value="2">
           
             <div class="form-group form-inline">
-                <label class="font-weight-bold float-left">Teacher:</label>
+              <label class="font-weight-bold float-left">Teacher:</label>
                 <input type="text" required class="form-control ml-4" name="teacher" disabled placeholder="Juan Dela Cruz" id="teacher-input" style="width:25%">
-                <a class="btn btn-warning ml-2" data-toggle="modal" data-target="#tableModal" href="#"><i data-feather="search"></i> Search</a>  
-                
+                <a class="btn btn-info ml-2" data-toggle="modal" data-target="#tableModal" href="#"><i data-feather="search"></i> Search</a>  
             </div>
 
           <div class="form-group form-inline">
               <label class="font-weight-bold mr-3">Due Date:</label>
               <input type="date" name="date" required  class="form-control" style="width:25%">
               <label class="font-weight-bold ml-5 mr-3">Subject:</label>
-              <input type="text" class="form-control" required name="subject" placeholder="IT101" style="width:30%">
+              <input type="text" class="form-control" required name="subject" placeholder="English" style="width:30%">
           </div>
           
           <div class="form-group form-inline">
+              <label class="font-weight-bold">BED Unit:</label>
+              <input type="radio" name="bed_unit" value="Elementary" required class="ml-4 mr-1">Elementary
+              <input type="radio" name="bed_unit" value="Junior High School" required class="ml-5 mr-1">Junior High School
+              <input type="radio" name="bed_unit" value="Senior High School" required class="ml-5 mr-1">Senior High School
+          </div>
+            <div class="form-group form-inline">
               <label class="font-weight-bold">Session:</label>
               <input type="radio" name="session" value="day" required class="ml-4 mr-1">Day
-              <input type="radio" name="session" value="evening" required  class="ml-5 mr-1" style="margin-right: 100px">Evening
-              
-              <label class="font-weight-bold ml-5">Course:</label>
-              <input type="text" name="course" required  class="form-control ml-3">
+              <input type="radio" name="session" value="evening" required class="ml-5 mr-1" >Evening
+            
           </div>
 
-          <div class="form-group form-inline">
-              
-          </div>
-          <div class="form-group">
-            <label class="font-weight-bold">Year Level</label>
-            
-            <select id="yrlevel" required  name ="yrlevel" class="form-control col-md-4">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-            </select>
+          <div class="form-group ">
+            <div class="form-inline">
+              <label class="font-weight-bold">Year Level</label>
+              <input type="number" name="yrlevel" id="yrlevel" class="form-control ml-2 mr-3" style="width:20%">
+              <label class="font-weight-bold ml-3">Section:</label>
+              <input type="text" name="section" required  class="form-control ml-2" style="width:20%">
+            </div>
           </div>
           <div class="form-group pt-2">
             <div class="form-inline">
-              <b>SY From</b> <input type="number" name="SYfrom" class="form-control yrpicker col-md-3 ml-2 mr-3">
-              <b>SY To</b> <input type="number" name="SYto" class="form-control yrpicker col-md-3 ml-2">
+              <b>SY From</b> <input type="number" name="SYfrom" class="form-control yrpicker ml-3 mr-3" style="width:20%">
+              <b>SY To</b> <input type="number" name="SYto" class="form-control yrpicker ml-2" style="width:20%">
             </div>
-          </div>
-          <div class="form-group pt-2 row">
-            <div class="col">
-              <label class="font-weight-bold">Semester</label><br>
-              <input type="radio" name="semester" value="1" required > 1<br>
-              <input type="radio" name="semester" value="2" required > 2<br>
-            </div>
-            <div class="col">
-                <label class="font-weight-bold">Term</label><br>
-                <input type="radio" name="term" value="1" required > 1<br>
-                <input type="radio" name="term" value="2" required > 2<br>
-              </div>
           </div>
           <div class="form-group pt-3">
-              <a href="{{route('evaluations.index')}}" class="btn btn-secondary mr-3">Cancel</a>
+              <a href="{{route('bedevaluations.index')}}" class="btn btn-secondary mr-3">Cancel</a>
               <button class="btn btn-info">Create</button>
             </div>
       </form>
@@ -93,9 +79,9 @@
             <thead>
                 <tr>
                     <th style="display:none">ID</th>
-                    <th class="bg-warning text-dark">Name</th>
-                    <th class="bg-warning text-dark">Office</th>
-                    <th class="bg-warning text-dark">Position</th>
+                    <th class="bg-info text-white">Name</th>
+                    <th class="bg-info text-white">Office</th>
+                    <th class="bg-info text-white">Position</th>
                 </tr>
             </thead>
             <tbody>

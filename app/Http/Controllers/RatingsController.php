@@ -15,8 +15,6 @@ class RatingsController extends Controller
         try{
             $evaluation = Evaluation::where('access_key', trim($request->access_key))->get();
             //return $evaluation;
-
-       
             if($evaluation->count()===0 ){
                 return redirect()->route('keyNotFound');
             }
@@ -24,10 +22,10 @@ class RatingsController extends Controller
                 foreach ($evaluation as $eval){
                     echo $eval->tool_id;
 
-                    if($eval->tool_id === 2){
+                    if($eval->tool_id === 3){
                         return view('views-student.ratingsAdmin', compact('evaluation'));
                     }
-                    else if($eval->tool_id === 4){
+                    else if($eval->tool_id === 5){
                         // return "NTP";
                         return view('views-student.ratingsNTP-page', compact('evaluation'));
                          

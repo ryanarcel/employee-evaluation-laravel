@@ -104,6 +104,23 @@ class EvalueeController extends Controller
         //return $request->session()->get("toSummarize");
     }
 
+    public function bedsummarize(Request $request, $id){
+        
+        $request->session()->forget('toSummarize');
+        $request->session()->put('toSummarize', $request->evaluations);
+
+        $maxItemId = ToolItem::whereRaw('id = (select max(`id`) from tool_items)')->get();
+        $maxEvalId = Evaluation::whereRaw('id = (select max(`id`) from evaluations)')->get();
+        $evaluations = Evaluation::find($request->evaluations);
+        $evaluee = Evaluee::find($id);
+        $items = ToolItem::where("tool_id","=",2)->get();
+        return view("views-bedevaluation.summaryEvaluation")->
+        with(["evaluations"=> $evaluations,"items"=>$items,"maxItemId"=>$maxItemId, "maxEvalId"=>$maxEvalId, "evaluee"=>$evaluee]);
+        
+        return $evaluations;
+        //return $request->session()->get("toSummarize");
+    }
+
     public function printSummary(Request $request, $id){
 
         $evalArray = $request->session()->get("toSummarize");
@@ -114,6 +131,20 @@ class EvalueeController extends Controller
         $evaluee = Evaluee::find($id);
         $items = ToolItem::where("tool_id","=",1)->get();
         return view("views-evaluation.printEvaluationSummary")->
+        with(["evaluations"=> $evaluations,"items"=>$items,"maxItemId"=>$maxItemId, "maxEvalId"=>$maxEvalId, "evaluee"=>$evaluee]);
+
+    }
+
+    public function bedPrintSummary(Request $request, $id){
+
+        $evalArray = $request->session()->get("toSummarize");
+
+        $maxItemId = ToolItem::whereRaw('id = (select max(`id`) from tool_items)')->get();
+        $maxEvalId = Evaluation::whereRaw('id = (select max(`id`) from evaluations)')->get();
+        $evaluations = Evaluation::find($evalArray);
+        $evaluee = Evaluee::find($id);
+        $items = ToolItem::where("tool_id","=",2)->get();
+        return view("views-bedevaluation.printEvaluationSummary")->
         with(["evaluations"=> $evaluations,"items"=>$items,"maxItemId"=>$maxItemId, "maxEvalId"=>$maxEvalId, "evaluee"=>$evaluee]);
 
     }

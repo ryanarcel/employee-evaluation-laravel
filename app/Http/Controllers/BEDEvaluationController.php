@@ -6,22 +6,22 @@ use Illuminate\Http\Request;
 use App\Evaluee;
 use App\Evaluation;
 
-class EvaluationController extends Controller
+class BEDEvaluationController extends Controller
 {
     public function index()
     { 
         
-        $evaluations = Evaluation::where('tool_id','=', 1)->where('archived', 0)->orderBy('id', 'desc')->get();
+        $evaluations = Evaluation::where('tool_id','=', 2)->where('archived', 0)->orderBy('id', 'desc')->get();
         
         //return $evaluations;
-        return view('views-evaluation.teacherEvaluation', compact("evaluations"));
+        return view('views-bedevaluation.teacherEvaluation', compact("evaluations"));
     
     }
 
     public function create()
     {
-        $evaluees = Evaluee::where('rank','=','Faculty')->where('teaching_dept', '=', 'College')->get();
-        return view('views-evaluation.teacher-create', compact("evaluees"));
+        $evaluees = Evaluee::where('rank','=','Faculty')->where('teaching_dept', '=', 'BED')->get();
+        return view('views-bedevaluation.teacher-create', compact("evaluees"));
     }
 
     public function store(Request $request)
@@ -32,7 +32,8 @@ class EvaluationController extends Controller
         $evaluation->subject = $request->subject;
         $evaluation->session = $request->session;
         $evaluation->date = $request->date;
-        $evaluation->course = $request->course;
+        $evaluation->unit = $request->bed_unit;
+        $evaluation->course = $request->subject;
         $evaluation->yrlevel = $request->yrlevel;
         $evaluation->SY_from = $request->SYfrom;
         $evaluation->SY_to = $request->SYto;
@@ -46,7 +47,7 @@ class EvaluationController extends Controller
         $evaluation->access_key = $key;
 
         $evaluation->save();
-        return redirect()->route('evaluations.index',['status'=>'success']);
+        return redirect()->route('bedevaluations.index',['status'=>'success']);
     }
 
   
@@ -54,10 +55,10 @@ class EvaluationController extends Controller
     {
         $evaluation = Evaluation::find($id);
         if($evaluation->scores->count()===0){
-            return view("views-evaluation.notFound");
+            return view("views-bedevaluation.notFound");
         }
         else{
-            return view("views-evaluation.eachEvaluation", compact("evaluation"));
+            return view("views-bedevaluation.eachEvaluation", compact("evaluation"));
         }
     }
  
@@ -91,9 +92,9 @@ class EvaluationController extends Controller
         $evaluation->status = $request->status;
         $evaluation->save();
         if($request->origin == "indiv")
-            return redirect()->route('evaluations.show', $id);
+            return redirect()->route('bedevaluations.show', $id);
         elseif($request->origin == "list")
-            return redirect()->route('evaluations.index');
+            return redirect()->route('bedevaluations.index');
     }
 
     public function accessNot($id, Request $request){
@@ -101,9 +102,9 @@ class EvaluationController extends Controller
         $evaluation->grant_access = $request->access;
         $evaluation->save();
         if($request->origin == "indiv")
-           return redirect()->route('evaluations.show', $id);
+           return redirect()->route('bedevaluations.show', $id);
         elseif($request->origin == "list")
-           return redirect()->route('evaluations.index');
+           return redirect()->route('bedevaluations.index');
       //  echo $request->access;
     }
    
@@ -115,7 +116,7 @@ class EvaluationController extends Controller
         $evaluation->save();
         
         if($evaluation->tool_id == 1){
-            return redirect()->route('evaluations.index');
+            return redirect()->route('bedevaluations.index');
         }
         else if($evaluation->tool_id == 2){
             return redirect()->route('adminevaluations.index');
@@ -128,7 +129,7 @@ class EvaluationController extends Controller
 
     public function print($id){
         $evaluation = Evaluation::find($id);
-        return view("views-evaluation.printEvaluation", compact("evaluation"));
+        return view("views-bedevaluation.printEvaluation", compact("evaluation"));
     }
 
 }
