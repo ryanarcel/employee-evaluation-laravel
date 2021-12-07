@@ -88,7 +88,7 @@
           </button>
         </div>
         <div class="modal-body">
-          
+          Search: <input type="text" name="search-evaluee" class="form-control mb-2" id="search-evaluee">
           <table class="table table-hover table-bordered" style="width:100%" id="evalueeTable">
             <thead>
                 <tr>
@@ -119,9 +119,23 @@
     <script src="{{asset('js/dataTables.bootstrap4.min.js')}}"></script>
 <script>
 $(document).ready(function() {
-   $('#evalueeTable').dataTable(); 
+   //$('#evalueeTable').dataTable(); 
+   $("#search-evaluee").keyup(function () {
+    var value = this.value.toLowerCase().trim();
+
+        $("#evalueeTable tr").each(function (index) {
+            if (!index) return;
+            $(this).find("td").each(function () {
+                var id = $(this).text().toLowerCase().trim();
+                var not_found = (id.indexOf(value) == -1);
+                $(this).closest('tr').toggle(!not_found);
+                return not_found;
+            });
+        });
+    });
 
     $('.theData').click(function(){
+      //alert("test")
       var id =  $(this).find(":first-child").text();
       var name = $(this).find(":first-child").next().text();
       $('#tableModal').modal('hide');
