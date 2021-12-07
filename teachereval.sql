@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 01, 2020 at 02:45 AM
--- Server version: 10.1.38-MariaDB
--- PHP Version: 7.3.3
+-- Generation Time: Dec 07, 2021 at 04:09 AM
+-- Server version: 10.4.18-MariaDB
+-- PHP Version: 8.0.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -33,7 +32,7 @@ CREATE TABLE `comments` (
   `comment` longtext NOT NULL,
   `student_id` bigint(50) NOT NULL,
   `evaluation_id` int(50) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `updated_at` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -56,7 +55,7 @@ INSERT INTO `comments` (`id`, `comment`, `student_id`, `evaluation_id`, `created
 CREATE TABLE `defaultpass` (
   `id` int(6) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `updated_at` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -87,10 +86,10 @@ CREATE TABLE `evaluations` (
   `semester` int(1) NOT NULL,
   `term` int(1) NOT NULL,
   `access_key` varchar(10) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `grant_access` tinyint(1) NOT NULL DEFAULT '0',
-  `archived` tinyint(1) NOT NULL DEFAULT '0',
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `status` tinyint(1) NOT NULL DEFAULT 0,
+  `grant_access` tinyint(1) NOT NULL DEFAULT 0,
+  `archived` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `updated_at` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -116,7 +115,7 @@ CREATE TABLE `evaluees` (
   `position` varchar(20) NOT NULL,
   `rank` varchar(20) NOT NULL,
   `teaching_dept` varchar(20) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `updated_at` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -154,7 +153,7 @@ CREATE TABLE `scores` (
   `student_id` bigint(50) NOT NULL,
   `item_id` int(50) NOT NULL,
   `score` int(10) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `updated_at` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -228,7 +227,7 @@ CREATE TABLE `students` (
   `lname` varchar(50) NOT NULL,
   `section` varchar(50) NOT NULL,
   `evaluation_id` int(30) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `updated_at` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -263,7 +262,7 @@ CREATE TABLE `tools` (
   `id` int(5) NOT NULL,
   `toolname` varchar(50) NOT NULL,
   `feather_data` varchar(20) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `updated_at` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -286,7 +285,7 @@ CREATE TABLE `tool_items` (
   `id` int(6) NOT NULL,
   `tool_id` int(10) NOT NULL,
   `statement` varchar(255) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `updated_at` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -342,7 +341,7 @@ CREATE TABLE `users` (
   `position` varchar(50) NOT NULL,
   `username` varchar(50) NOT NULL,
   `password` varchar(150) NOT NULL,
-  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6),
+  `created_at` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
   `updated_at` timestamp(6) NOT NULL DEFAULT '0000-00-00 00:00:00.000000'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -351,7 +350,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `fname`, `lname`, `office`, `position`, `username`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'Ethel Marie', 'Aguilar', 'HR', 'Head', 'acdhr', '$2y$10$XJ36WL/D6iYhCl/F0oduueHOSNUyGuX1xgbVGNV7ERV3moUMmGGHm', '2020-02-12 06:44:12.224043', '0000-00-00 00:00:00.000000');
+(1, 'Ethel Marie', 'Aguilar', 'HR', 'Head', 'acdhr', '$2y$10$Nb1B.0NUjrH3DloNXU7E3.3rnjJn1MZJEiqffkSngTVVFSQXE9.RC', '2021-12-07 03:08:28.353372', '0000-00-00 00:00:00.000000');
 
 --
 -- Indexes for dumped tables
