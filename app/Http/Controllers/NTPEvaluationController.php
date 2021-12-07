@@ -6,22 +6,22 @@ use Illuminate\Http\Request;
 use App\Evaluee;
 use App\Evaluation;
 
-class AdminEvaluationController extends Controller
+class NTPEvaluationController extends Controller
 {
     public function index()
     { 
         
-        $evaluations = Evaluation::where('tool_id','=', 2)->where('archived', 0)->orderBy('id', 'desc')->get();
+        $evaluations = Evaluation::where('tool_id','=', 4)->where('archived', 0)->orderBy('id', 'desc')->get();
 
         //return $evaluations;
-        return view('views-adminEval.adminEvaluation', compact("evaluations"));
+        return view('views-ntpEval.ntpEvaluation', compact("evaluations"));
     
     }
 
     public function create()
     {
-        $evaluees = Evaluee::where('rank','Administrator')->get();
-        return view('views-adminEval.admin-create', compact("evaluees"));
+        $evaluees = Evaluee::where('rank','NTP')->get();
+        return view('views-ntpEval.ntp-create', compact("evaluees"));
     }
 
     public function store(Request $request)
@@ -39,7 +39,6 @@ class AdminEvaluationController extends Controller
         $evaluation->semester = 0;
         $evaluation->term = 0;
         $evaluation->status = 0;
-        $evaluation->type = $request->type;
 
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
         $key = substr(str_shuffle($permitted_chars), 0, 6);
@@ -47,17 +46,17 @@ class AdminEvaluationController extends Controller
         $evaluation->access_key = $key;
 
         $evaluation->save();
-        return redirect()->route('adminevaluations.index',['status'=>'success']);
+        return redirect()->route('ntpevaluations.index',['status'=>'success']);
     }
 
     public function show($id)
     {
         $evaluation = Evaluation::find($id);
         if($evaluation->scores->count()===0){
-            return view("views-adminEval.notFound");
+            return view("views-ntpEval.notFound");
         }
         else{
-            return view("views-adminEval.eachEvaluation", compact("evaluation"));
+            return view("views-ntpEval.eachEvaluation", compact("evaluation"));
         }
     }
 
@@ -82,9 +81,9 @@ class AdminEvaluationController extends Controller
         $evaluation->status = $request->status;
         $evaluation->save();
         if($request->origin == "indiv")
-            return redirect()->route('adminevaluations.show', $id);
+            return redirect()->route('ntpevaluations.show', $id);
         elseif($request->origin == "list")
-            return redirect()->route('adminevaluations.index');
+            return redirect()->route('ntpevaluations.index');
     }
 
     public function accessNot($id, Request $request){
@@ -92,9 +91,9 @@ class AdminEvaluationController extends Controller
         $evaluation->grant_access = $request->access;
         $evaluation->save();
         if($request->origin == "indiv")
-           return redirect()->route('adminevaluations.show', $id);
+           return redirect()->route('ntpevaluations.show', $id);
         elseif($request->origin == "list")
-           return redirect()->route('adminevaluations.index');
+           return redirect()->route('ntpevaluations.index');
       //  echo $request->access;
     }
    
@@ -105,13 +104,12 @@ class AdminEvaluationController extends Controller
         $evaluation->grant_access = 0;
         $evaluation->save();
 
-        return redirect()->route('adminevaluations.index');
+        return redirect()->route('ntpevaluations.index');
       
     }
 
     public function print($id){
         $evaluation = Evaluation::find($id);
-        return view("views-adminEval.printEvaluation", compact("evaluation"));
+        return view("views-ntpEval.printEvaluation", compact("evaluation"));
     }
-
 }

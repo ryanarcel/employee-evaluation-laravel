@@ -6,22 +6,22 @@ use Illuminate\Http\Request;
 use App\Evaluee;
 use App\Evaluation;
 
-class AdminEvaluationController extends Controller
+class BEDEvaluationController extends Controller
 {
     public function index()
     { 
         
         $evaluations = Evaluation::where('tool_id','=', 2)->where('archived', 0)->orderBy('id', 'desc')->get();
-
+        
         //return $evaluations;
-        return view('views-adminEval.adminEvaluation', compact("evaluations"));
+        return view('views-bedevaluation.teacherEvaluation', compact("evaluations"));
     
     }
 
     public function create()
     {
-        $evaluees = Evaluee::where('rank','Administrator')->get();
-        return view('views-adminEval.admin-create', compact("evaluees"));
+        $evaluees = Evaluee::where('rank','=','Faculty')->where('teaching_dept', '=', 'BED')->get();
+        return view('views-bedevaluation.teacher-create', compact("evaluees"));
     }
 
     public function store(Request $request)
@@ -29,17 +29,17 @@ class AdminEvaluationController extends Controller
         $evaluation = new Evaluation;
         $evaluation->tool_id = $request->tool_id;
         $evaluation->evaluee_id = $request->evaluee_id;
-        $evaluation->subject = "N/A";
-        $evaluation->session = "N/A";
+        $evaluation->subject = $request->subject;
+        $evaluation->session = $request->session;
         $evaluation->date = $request->date;
-        $evaluation->course = "N/A";
-        $evaluation->yrlevel = 0000;
+        $evaluation->unit = $request->bed_unit;
+        $evaluation->course = $request->subject;
+        $evaluation->yrlevel = $request->yrlevel;
         $evaluation->SY_from = $request->SYfrom;
         $evaluation->SY_to = $request->SYto;
-        $evaluation->semester = 0;
-        $evaluation->term = 0;
+        $evaluation->semester = $request->semester;
+        $evaluation->term = $request->term;
         $evaluation->status = 0;
-        $evaluation->type = $request->type;
 
         $permitted_chars = '0123456789abcdefghijklmnopqrstuvwxyz';
         $key = substr(str_shuffle($permitted_chars), 0, 6);
@@ -47,20 +47,21 @@ class AdminEvaluationController extends Controller
         $evaluation->access_key = $key;
 
         $evaluation->save();
-        return redirect()->route('adminevaluations.index',['status'=>'success']);
+        return redirect()->route('bedevaluations.index',['status'=>'success']);
     }
 
+  
     public function show($id)
     {
         $evaluation = Evaluation::find($id);
         if($evaluation->scores->count()===0){
-            return view("views-adminEval.notFound");
+            return view("views-bedevaluation.notFound");
         }
         else{
-            return view("views-adminEval.eachEvaluation", compact("evaluation"));
+            return view("views-bedevaluation.eachEvaluation", compact("evaluation"));
         }
     }
-
+ 
     public function edit($id)
     {
         //
@@ -68,7 +69,16 @@ class AdminEvaluationController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $evaluee = Evaluee::find($id);
+        $evaluee->fname = $request->fname;
+        $evaluee->lname = $request->lname;
+        $evaluee->office = $request->office;
+        $evaluee->position = $request->position;
+        $evaluee->rank = "Administrator";
+        $evaluee->username = "";
+        $evaluee->password = "";
+        $evaluee->save();
+        return redirect()->route('admins.index');
     }
 
     public function destroy($id)
@@ -82,9 +92,9 @@ class AdminEvaluationController extends Controller
         $evaluation->status = $request->status;
         $evaluation->save();
         if($request->origin == "indiv")
-            return redirect()->route('adminevaluations.show', $id);
+            return redirect()->route('bedevaluations.show', $id);
         elseif($request->origin == "list")
-            return redirect()->route('adminevaluations.index');
+            return redirect()->route('bedevaluations.index');
     }
 
     public function accessNot($id, Request $request){
@@ -92,9 +102,9 @@ class AdminEvaluationController extends Controller
         $evaluation->grant_access = $request->access;
         $evaluation->save();
         if($request->origin == "indiv")
-           return redirect()->route('adminevaluations.show', $id);
+           return redirect()->route('bedevaluations.show', $id);
         elseif($request->origin == "list")
-           return redirect()->route('adminevaluations.index');
+           return redirect()->route('bedevaluations.index');
       //  echo $request->access;
     }
    
@@ -104,14 +114,22 @@ class AdminEvaluationController extends Controller
         $evaluation->status = 0;
         $evaluation->grant_access = 0;
         $evaluation->save();
-
-        return redirect()->route('adminevaluations.index');
-      
+        
+        if($evaluation->tool_id == 1){
+            return redirect()->route('bedevaluations.index');
+        }
+        else if($evaluation->tool_id == 2){
+            return redirect()->route('adminevaluations.index');
+        }
+        else if($evaluation->tool_id == 3){
+            return redirect()->route('supervevaluations.index');
+        }
+        
     }
 
     public function print($id){
         $evaluation = Evaluation::find($id);
-        return view("views-adminEval.printEvaluation", compact("evaluation"));
+        return view("views-bedevaluation.printEvaluation", compact("evaluation"));
     }
 
 }
