@@ -7,16 +7,13 @@ Edit Evaluee
     label{
         font-weight: bold;
     }
-    .card{
-        background-color: #E0E3E2;
-    }
 </style>
 @stop
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h5">Edit Evaluee</h1>
     </div>
-    <div class="col-md-8 pt-3 card shadow">
+    <div class="col-md-12 pt-3 card shadow">
         <div class="col-md-6 mt-4 mb-4 offset-md-3">
         <form action="{{route('evaluees.update', $evaluee->id)}}" method="post">
             @method('put')
@@ -28,14 +25,6 @@ Edit Evaluee
             <div class="form-group">
                 <label >Last Name</label>
                 <input type="text" class="form-control" name="lname" value="{{$evaluee->lname}}">
-            </div>
-            <div class="form-group">
-                <label >Office</label>
-                <input type="text" class="form-control" name="office" value="{{$evaluee->office}}">
-            </div>
-            <div class="form-group">
-                <label >Position</label>
-                <input type="text" class="form-control" name="position" value="{{$evaluee->position}}">
             </div>
             <div class="form-group">
             <center>

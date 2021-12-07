@@ -103,43 +103,41 @@
     <div class="row">
 
         <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
-            <div class="hovereffect" style="background-color: #4891ff">
+            <div class="hovereffect" style="background-color: #d179b5">
                 <center>
-                <img class="img-responsive" src="{{asset('image/teacher.png')}}" alt="">
-                </center>
-                <div class="overlay">
-                    <h2>Teacher<br>evaluation</h2>
-                    <a class="info" href="#">Proceed</a>
-                </div>
-            </div>
-        </div>    
-       
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
-            <div class="hovereffect" style="background-color: #41e577">
-                <center>
-                <img class="img-responsive" src="{{asset('image/working.png')}}" alt="">
-                </center>
-                <div class="overlay">
-                    <h2>Employee<br>evaluation</h2>
-                    <a class="info" href="#">Proceed</a>
-                </div>
-            </div>
-        </div>
-
-        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
-                <div class="hovereffect" style="background-color: #d179b5">
-                    <center>
                     <img class="img-responsive" src="{{asset('image/office.png')}}" alt="">
-                    </center>
+                </center>
                     <div class="overlay">
-                        <h2>Office<br>Evaluation</h2>
-                        <a class="info" href="#">Proceed</a>
+                        <h2>Admin<br>Evaluation</h2>
+                    <a class="info" href="{{route('adminevaluations.index')}}">Proceed</a>
                     </div>
                 </div>
-            </div>
+        </div>
           
-        
-   
-    </div>
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
+          <div class="hovereffect" style="background-color: #41e577">
+              <center>
+              <img class="img-responsive" src="{{asset('image/working.png')}}" alt="">
+              </center>
+              <div class="overlay">
+                  <h2>Supervisor<br>Evaluation</h2>
+                  <a class="info" href="{{route('supervevaluations.index')}}">Proceed</a>
+              </div>
+          </div>
+      </div>
+
+      <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" >
+        <div class="hovereffect" style="background-color: #4891ff">
+            <center>
+            <img class="img-responsive" src="{{asset('image/teacher.png')}}" alt="">
+            </center>
+            <div class="overlay">
+                <h2>Teacher<br>evaluation</h2>
+            <a class="info" href="{{route('evaluations.index')}}">Proceed</a>
+            </div>
+        </div>
+    </div>   
+
+  </div>
 
 @stop
