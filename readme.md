@@ -1,3 +1,15 @@
+<h2>What the project does</h2>
+<p>This project is an employee evaluation system for Assumption College of Davao. This aims to automate the performace evaluation process of the mentioned school.</p>
+
+<h2>Why the project is useful</h2>
+<p>The Assumption College of Davao has been having a manual processing of performace evaluation of its employees for the longest time. The school never had an automated evaluation system. This caused for significant delays of completion especially in evaluation of teachers and instructors. The school has about a hundred teachers. A teacher could handle multiple classes with about 50 students each class. Image how laborious tallying all the scores given by all students for all teachers. This project aimed to aleviate such problem.
+    
+<h2>How users can get started with the project</h2>
+<p>Since this project is a propreitary application for a private academic instituion, the people involved in the development of this project will be conducting training about the application's usage internally within the school's jurisdiction.
+    
+<h2>Who maintains and contributes to the project</h2>
+<p>This project was initially developed by <a href='https://www.linkedin.com/in/ryanarcel/'>Ryan Arcel Galendez, MIT</a>. By the time of this document's publication. He is serving as the Program Dean of Assumption College of Davao's Bachelor in Science of Information Technology. Aside from being ang academic, the developer has a strong background in Web Development particularly with the Laravel Web Framework. He obtained a Master's degree in Information Technology with a Capstone thesis that focused on building decentralized application based on Ethereum, Solidity, and Web3.</p>
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
